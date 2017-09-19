@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="43ad1c29c0f448419b9bcbdd3da45831" Name="Diagram1">
+        <EntityTypeShape EntityType="AddressDatabbaseModel.HomeStay" Width="1.5" PointX="9.75" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AddressDatabbaseModel.HospitalServiceAllocation" Width="1.5" PointX="12.75" PointY="24.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AddressDatabbaseModel.sysdiagram" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AddressDatabbaseModel.tblBusAssignToStation" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AddressDatabbaseModel.tblBusCompany" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="AddressDatabbaseModel.tblBusStaion" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AddressDatabbaseModel.tblCategory" Width="1.5" PointX="5.25" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AddressDatabbaseModel.tblCity" Width="1.5" PointX="8.25" PointY="31.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AddressDatabbaseModel.tblDistrict" Width="1.5" PointX="3" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AddressDatabbaseModel.tblDivision" Width="1.5" PointX="0.75" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AddressDatabbaseModel.tblDoctor" Width="1.5" PointX="7.5" PointY="24" IsExpanded="true" />
+        <EntityTypeShape EntityType="AddressDatabbaseModel.tblDoctorType" Width="1.5" PointX="5.25" PointY="24.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AddressDatabbaseModel.tblFlat" Width="1.5" PointX="13.5" PointY="28.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AddressDatabbaseModel.tblHospital" Width="1.5" PointX="10.5" PointY="23.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AddressDatabbaseModel.tblHospitalService" Width="1.5" PointX="10.5" PointY="39.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AddressDatabbaseModel.tblHospitalType" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AddressDatabbaseModel.tblHotelImage" Width="1.5" PointX="9.75" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AddressDatabbaseModel.tblLawerType" Width="1.5" PointX="8.25" PointY="39.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AddressDatabbaseModel.tblLawyer" Width="1.5" PointX="10.5" PointY="28.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AddressDatabbaseModel.tblLCourt" Width="1.5" PointX="8.25" PointY="42.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AddressDatabbaseModel.tblLocation" Width="1.5" PointX="5.25" PointY="27.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AddressDatabbaseModel.tblMess" Width="1.5" PointX="13.5" PointY="33.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AddressDatabbaseModel.tblThana" Width="1.5" PointX="5.25" PointY="35.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AddressDatabbaseModel.tblTourSpot" Width="1.5" PointX="7.5" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AddressDatabbaseModel.tblTourSpotImage" Width="1.5" PointX="9.75" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AddressDatabbaseModel.TravelHotel" Width="1.5" PointX="9.75" PointY="35.5" IsExpanded="true" />
+        <AssociationConnector Association="AddressDatabbaseModel.FK__HomeStay__TourSp__2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="AddressDatabbaseModel.FK__HospitalS__Hospi__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="AddressDatabbaseModel.FK__HospitalS__Servi__4CA06362" ManuallyRouted="false" />
+        <AssociationConnector Association="AddressDatabbaseModel.FK__tblBusAss__BusId__1ED998B2" ManuallyRouted="false" />
+        <AssociationConnector Association="AddressDatabbaseModel.FK__tblBusAss__Stati__1FCDBCEB" ManuallyRouted="false" />
+        <AssociationConnector Association="AddressDatabbaseModel.FK__tblTourSp__Categ__24927208" ManuallyRouted="false" />
+        <AssociationConnector Association="AddressDatabbaseModel.FK__tblDoctor__CityI__17036CC0" ManuallyRouted="false" />
+        <AssociationConnector Association="AddressDatabbaseModel.FK__tblFlat__CityId__236943A5" ManuallyRouted="false" />
+        <AssociationConnector Association="AddressDatabbaseModel.FK__tblHospit__CityI__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="AddressDatabbaseModel.FK__tblHospit__Locat__0C85DE4D" ManuallyRouted="false" />
+        <AssociationConnector Association="AddressDatabbaseModel.FK__tblLawyer__CityI__2DE6D218" ManuallyRouted="false" />
+        <AssociationConnector Association="AddressDatabbaseModel.FK__tblLocati__CityI__59063A47" ManuallyRouted="false" />
+        <AssociationConnector Association="AddressDatabbaseModel.FK__tblMess__CityId__1F98B2C1" ManuallyRouted="false" />
+        <AssociationConnector Association="AddressDatabbaseModel.FK__tblDistri__Divis__15502E78" ManuallyRouted="false" />
+        <AssociationConnector Association="AddressDatabbaseModel.FK__tblDoctor__Distr__14270015" ManuallyRouted="false" />
+        <AssociationConnector Association="AddressDatabbaseModel.FK__tblHospit__Distr__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="AddressDatabbaseModel.FK__tblLawyer__Distr__2FCF1A8A" ManuallyRouted="false" />
+        <AssociationConnector Association="AddressDatabbaseModel.FK__tblThana__Distri__182C9B23" ManuallyRouted="false" />
+        <AssociationConnector Association="AddressDatabbaseModel.FK__tblTourSp__Distr__267ABA7A" ManuallyRouted="false" />
+        <AssociationConnector Association="AddressDatabbaseModel.FK__tblDoctor__Divis__1332DBDC" ManuallyRouted="false" />
+        <AssociationConnector Association="AddressDatabbaseModel.FK__tblHospit__Divis__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="AddressDatabbaseModel.FK__tblLawyer__Divis__2EDAF651" ManuallyRouted="false" />
+        <AssociationConnector Association="AddressDatabbaseModel.FK__tblTourSp__Divis__25869641" ManuallyRouted="false" />
+        <AssociationConnector Association="AddressDatabbaseModel.FK__tblDoctor__Docto__123EB7A3" ManuallyRouted="false" />
+        <AssociationConnector Association="AddressDatabbaseModel.FK__tblDoctor__Hospi__114A936A" ManuallyRouted="false" />
+        <AssociationConnector Association="AddressDatabbaseModel.FK__tblDoctor__Locat__160F4887" ManuallyRouted="false" />
+        <AssociationConnector Association="AddressDatabbaseModel.FK__tblDoctor__Thana__151B244E" ManuallyRouted="false" />
+        <AssociationConnector Association="AddressDatabbaseModel.FK__tblFlat__Locatio__245D67DE" ManuallyRouted="false" />
+        <AssociationConnector Association="AddressDatabbaseModel.FK__tblHospit__Thana__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="AddressDatabbaseModel.FK__tblHotelI__TourS__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="AddressDatabbaseModel.FK__tblLawyer__lawye__2CF2ADDF" ManuallyRouted="false" />
+        <AssociationConnector Association="AddressDatabbaseModel.FK__tblLawyer__Court__2BFE89A6" ManuallyRouted="false" />
+        <AssociationConnector Association="AddressDatabbaseModel.FK__tblLawyer__Locat__31B762FC" ManuallyRouted="false" />
+        <AssociationConnector Association="AddressDatabbaseModel.FK__tblLawyer__Thana__30C33EC3" ManuallyRouted="false" />
+        <AssociationConnector Association="AddressDatabbaseModel.FK__tblMess__Locatio__208CD6FA" ManuallyRouted="false" />
+        <AssociationConnector Association="AddressDatabbaseModel.FK__tblTourSp__Thana__276EDEB3" ManuallyRouted="false" />
+        <AssociationConnector Association="AddressDatabbaseModel.FK__tblTourSp__TourS__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="AddressDatabbaseModel.FK__TravelHot__TourS__2A4B4B5E" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

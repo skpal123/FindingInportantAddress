@@ -1,0 +1,2313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AddressDatabbaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="HomeStay">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="EstimatedPrice" Type="float" />
+          <Property Name="TourSpotId" Type="int" />
+          <Property Name="HotelWebsitesUrl" Type="varchar" MaxLength="250" />
+          <Property Name="location" Type="varchar" MaxLength="250" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="PostedDate" Type="date" />
+        </EntityType>
+        <EntityType Name="HospitalServiceAllocation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HospitalId" Type="int" />
+          <Property Name="ServiceId" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tblBusAssignToStation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BusId" Type="int" />
+          <Property Name="StationId" Type="int" />
+        </EntityType>
+        <EntityType Name="tblBusCompany">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="250" />
+          <Property Name="BusName" Type="varchar" MaxLength="250" />
+          <Property Name="Route" Type="varchar" MaxLength="250" />
+          <Property Name="OwnerName" Type="varchar" MaxLength="100" />
+          <Property Name="OwnerContactInformation" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="tblBusStaion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="location" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tblCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="tblCity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblDistrict">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="30" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="DivisionId" Type="int" />
+        </EntityType>
+        <EntityType Name="tblDivision">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="30" />
+          <Property Name="Description" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="tblDoctor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="30" />
+          <Property Name="imagePath" Type="varchar" MaxLength="100" />
+          <Property Name="VisitAmountFirstTime" Type="float" />
+          <Property Name="VisitAmountSecondTime" Type="float" />
+          <Property Name="Education" Type="varchar" MaxLength="400" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="PersonalEmailaddress" Type="varchar" MaxLength="100" />
+          <Property Name="PersonalWebsite" Type="varchar" MaxLength="100" />
+          <Property Name="PersonalChamber" Type="varchar" MaxLength="400" />
+          <Property Name="ContactNumber" Type="varchar" MaxLength="400" />
+          <Property Name="SerialNumber" Type="varchar" MaxLength="400" />
+          <Property Name="HelthCareTime" Type="varchar" MaxLength="200" />
+          <Property Name="HospitalId" Type="int" />
+          <Property Name="DoctorTypeId" Type="int" />
+          <Property Name="DivisionId" Type="int" />
+          <Property Name="DistrictId" Type="int" />
+          <Property Name="ThanaId" Type="int" />
+          <Property Name="LocationId" Type="int" />
+          <Property Name="Address" Type="varchar" MaxLength="200" />
+          <Property Name="CityId" Type="int" />
+        </EntityType>
+        <EntityType Name="tblDoctorType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="30" />
+          <Property Name="Description" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="tblFlat">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BuildingName" Type="varchar" MaxLength="30" />
+          <Property Name="imagePath" Type="varchar" MaxLength="100" />
+          <Property Name="ContactNumber" Type="varchar" MaxLength="400" />
+          <Property Name="CityId" Type="int" />
+          <Property Name="LocationId" Type="int" />
+          <Property Name="Address" Type="varchar" MaxLength="200" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="EstimatedFlatFare" Type="float" />
+          <Property Name="Advance" Type="float" />
+          <Property Name="PostingDate" Type="date" />
+          <Property Name="AvailableMonth" Type="varchar" MaxLength="100" />
+          <Property Name="PostedDate" Type="date" />
+          <Property Name="DeadlineDate" Type="date" />
+        </EntityType>
+        <EntityType Name="tblHospital">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="30" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="DivisionId" Type="int" />
+          <Property Name="DistrictId" Type="int" />
+          <Property Name="ThanaId" Type="int" />
+          <Property Name="CityId" Type="int" />
+          <Property Name="Address" Type="varchar" MaxLength="250" />
+          <Property Name="LocationId" Type="int" />
+        </EntityType>
+        <EntityType Name="tblHospitalService">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="30" />
+          <Property Name="EstimatedPrice" Type="float" />
+        </EntityType>
+        <EntityType Name="tblHospitalType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="30" />
+          <Property Name="Description" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="tblHotelImage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ImagePath" Type="varchar" MaxLength="50" />
+          <Property Name="PhotoCreditName" Type="varchar" MaxLength="100" />
+          <Property Name="TourSpotId" Type="int" />
+          <Property Name="UploadDate" Type="date" />
+        </EntityType>
+        <EntityType Name="tblLawerType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="30" />
+          <Property Name="Description" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="tblLawyer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="30" />
+          <Property Name="imagePath" Type="varchar" MaxLength="100" />
+          <Property Name="Education" Type="varchar" MaxLength="400" />
+          <Property Name="PersonalEmailaddress" Type="varchar" MaxLength="100" />
+          <Property Name="PersonalWebsite" Type="varchar" MaxLength="100" />
+          <Property Name="PersonalChamber" Type="varchar" MaxLength="400" />
+          <Property Name="ContactNumber" Type="varchar" MaxLength="400" />
+          <Property Name="EstimatedFee" Type="float" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="CourtId" Type="int" />
+          <Property Name="lawyerTypeId" Type="int" />
+          <Property Name="CityId" Type="int" />
+          <Property Name="DivisionId" Type="int" />
+          <Property Name="DistrictId" Type="int" />
+          <Property Name="ThanaId" Type="int" />
+          <Property Name="LocationId" Type="int" />
+          <Property Name="Address" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="tblLCourt">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="30" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="Location" Type="varchar" MaxLength="200" />
+          <Property Name="CourtWebsite" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="tblLocation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="CityId" Type="int" />
+        </EntityType>
+        <EntityType Name="tblMess">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="30" />
+          <Property Name="imagePath" Type="varchar" MaxLength="100" />
+          <Property Name="ContactNumber" Type="varchar" MaxLength="400" />
+          <Property Name="ManagerName" Type="varchar" MaxLength="50" />
+          <Property Name="AvailableSit" Type="int" />
+          <Property Name="TotalSit" Type="int" />
+          <Property Name="Advance" Type="float" />
+          <Property Name="EstimatedSitFare" Type="float" />
+          <Property Name="CityId" Type="int" />
+          <Property Name="LocationId" Type="int" />
+          <Property Name="Address" Type="varchar" MaxLength="200" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="PostedDate" Type="date" />
+          <Property Name="DeadlineDate" Type="date" />
+        </EntityType>
+        <EntityType Name="tblThana">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="30" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="DistrictId" Type="int" />
+        </EntityType>
+        <EntityType Name="tblTourSpot">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="CategoryId" Type="int" />
+          <Property Name="DivisionId" Type="int" />
+          <Property Name="DistrictId" Type="int" />
+          <Property Name="ThanaId" Type="int" />
+          <Property Name="location" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="tblTourSpotImage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ImagePath" Type="varchar" MaxLength="50" />
+          <Property Name="PhotoCreditName" Type="varchar" MaxLength="100" />
+          <Property Name="TourSpotId" Type="int" />
+          <Property Name="UploadDate" Type="date" />
+        </EntityType>
+        <EntityType Name="TravelHotel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="EstimatedPrice" Type="float" />
+          <Property Name="TourSpotId" Type="int" />
+          <Property Name="HotelWebsitesUrl" Type="varchar" MaxLength="250" />
+          <Property Name="location" Type="varchar" MaxLength="250" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="PostedDate" Type="date" />
+        </EntityType>
+        <Association Name="FK__HomeStay__TourSp__2D27B809">
+          <End Role="tblTourSpot" Type="Self.tblTourSpot" Multiplicity="0..1" />
+          <End Role="HomeStay" Type="Self.HomeStay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTourSpot">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HomeStay">
+              <PropertyRef Name="TourSpotId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HospitalS__Hospi__4BAC3F29">
+          <End Role="tblHospitalService" Type="Self.tblHospitalService" Multiplicity="0..1" />
+          <End Role="HospitalServiceAllocation" Type="Self.HospitalServiceAllocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblHospitalService">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HospitalServiceAllocation">
+              <PropertyRef Name="HospitalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HospitalS__Servi__4CA06362">
+          <End Role="tblHospital" Type="Self.tblHospital" Multiplicity="0..1" />
+          <End Role="HospitalServiceAllocation" Type="Self.HospitalServiceAllocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblHospital">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HospitalServiceAllocation">
+              <PropertyRef Name="ServiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblBusAss__BusId__1ED998B2">
+          <End Role="tblBusCompany" Type="Self.tblBusCompany" Multiplicity="0..1" />
+          <End Role="tblBusAssignToStation" Type="Self.tblBusAssignToStation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBusCompany">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblBusAssignToStation">
+              <PropertyRef Name="BusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblBusAss__Stati__1FCDBCEB">
+          <End Role="tblBusStaion" Type="Self.tblBusStaion" Multiplicity="0..1" />
+          <End Role="tblBusAssignToStation" Type="Self.tblBusAssignToStation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBusStaion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblBusAssignToStation">
+              <PropertyRef Name="StationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblDistri__Divis__15502E78">
+          <End Role="tblDivision" Type="Self.tblDivision" Multiplicity="0..1" />
+          <End Role="tblDistrict" Type="Self.tblDistrict" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDivision">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblDistrict">
+              <PropertyRef Name="DivisionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblDoctor__CityI__17036CC0">
+          <End Role="tblCity" Type="Self.tblCity" Multiplicity="0..1" />
+          <End Role="tblDoctor" Type="Self.tblDoctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCity">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblDoctor">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblDoctor__Distr__14270015">
+          <End Role="tblDistrict" Type="Self.tblDistrict" Multiplicity="0..1" />
+          <End Role="tblDoctor" Type="Self.tblDoctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDistrict">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblDoctor">
+              <PropertyRef Name="DistrictId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblDoctor__Divis__1332DBDC">
+          <End Role="tblDivision" Type="Self.tblDivision" Multiplicity="0..1" />
+          <End Role="tblDoctor" Type="Self.tblDoctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDivision">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblDoctor">
+              <PropertyRef Name="DivisionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblDoctor__Docto__123EB7A3">
+          <End Role="tblDoctorType" Type="Self.tblDoctorType" Multiplicity="0..1" />
+          <End Role="tblDoctor" Type="Self.tblDoctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDoctorType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblDoctor">
+              <PropertyRef Name="DoctorTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblDoctor__Hospi__114A936A">
+          <End Role="tblHospital" Type="Self.tblHospital" Multiplicity="0..1" />
+          <End Role="tblDoctor" Type="Self.tblDoctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblHospital">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblDoctor">
+              <PropertyRef Name="HospitalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblDoctor__Locat__160F4887">
+          <End Role="tblLocation" Type="Self.tblLocation" Multiplicity="0..1" />
+          <End Role="tblDoctor" Type="Self.tblDoctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLocation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblDoctor">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblDoctor__Thana__151B244E">
+          <End Role="tblThana" Type="Self.tblThana" Multiplicity="0..1" />
+          <End Role="tblDoctor" Type="Self.tblDoctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblThana">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblDoctor">
+              <PropertyRef Name="ThanaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblFlat__CityId__236943A5">
+          <End Role="tblCity" Type="Self.tblCity" Multiplicity="0..1" />
+          <End Role="tblFlat" Type="Self.tblFlat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCity">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblFlat">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblFlat__Locatio__245D67DE">
+          <End Role="tblLocation" Type="Self.tblLocation" Multiplicity="0..1" />
+          <End Role="tblFlat" Type="Self.tblFlat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLocation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblFlat">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblHospit__CityI__46E78A0C">
+          <End Role="tblCity" Type="Self.tblCity" Multiplicity="0..1" />
+          <End Role="tblHospital" Type="Self.tblHospital" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCity">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblHospital">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblHospit__Distr__44FF419A">
+          <End Role="tblDistrict" Type="Self.tblDistrict" Multiplicity="0..1" />
+          <End Role="tblHospital" Type="Self.tblHospital" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDistrict">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblHospital">
+              <PropertyRef Name="DistrictId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblHospit__Divis__440B1D61">
+          <End Role="tblDivision" Type="Self.tblDivision" Multiplicity="0..1" />
+          <End Role="tblHospital" Type="Self.tblHospital" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDivision">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblHospital">
+              <PropertyRef Name="DivisionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblHospit__Locat__0C85DE4D">
+          <End Role="tblCity" Type="Self.tblCity" Multiplicity="0..1" />
+          <End Role="tblHospital" Type="Self.tblHospital" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCity">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblHospital">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblHospit__Thana__45F365D3">
+          <End Role="tblThana" Type="Self.tblThana" Multiplicity="0..1" />
+          <End Role="tblHospital" Type="Self.tblHospital" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblThana">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblHospital">
+              <PropertyRef Name="ThanaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblHotelI__TourS__3D5E1FD2">
+          <End Role="tblTourSpot" Type="Self.tblTourSpot" Multiplicity="0..1" />
+          <End Role="tblHotelImage" Type="Self.tblHotelImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTourSpot">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblHotelImage">
+              <PropertyRef Name="TourSpotId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblLawyer__CityI__2DE6D218">
+          <End Role="tblCity" Type="Self.tblCity" Multiplicity="0..1" />
+          <End Role="tblLawyer" Type="Self.tblLawyer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCity">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLawyer">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblLawyer__Court__2BFE89A6">
+          <End Role="tblLCourt" Type="Self.tblLCourt" Multiplicity="0..1" />
+          <End Role="tblLawyer" Type="Self.tblLawyer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLCourt">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLawyer">
+              <PropertyRef Name="CourtId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblLawyer__Distr__2FCF1A8A">
+          <End Role="tblDistrict" Type="Self.tblDistrict" Multiplicity="0..1" />
+          <End Role="tblLawyer" Type="Self.tblLawyer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDistrict">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLawyer">
+              <PropertyRef Name="DistrictId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblLawyer__Divis__2EDAF651">
+          <End Role="tblDivision" Type="Self.tblDivision" Multiplicity="0..1" />
+          <End Role="tblLawyer" Type="Self.tblLawyer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDivision">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLawyer">
+              <PropertyRef Name="DivisionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblLawyer__lawye__2CF2ADDF">
+          <End Role="tblLawerType" Type="Self.tblLawerType" Multiplicity="0..1" />
+          <End Role="tblLawyer" Type="Self.tblLawyer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLawerType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLawyer">
+              <PropertyRef Name="lawyerTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblLawyer__Locat__31B762FC">
+          <End Role="tblLocation" Type="Self.tblLocation" Multiplicity="0..1" />
+          <End Role="tblLawyer" Type="Self.tblLawyer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLocation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLawyer">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblLawyer__Thana__30C33EC3">
+          <End Role="tblThana" Type="Self.tblThana" Multiplicity="0..1" />
+          <End Role="tblLawyer" Type="Self.tblLawyer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblThana">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLawyer">
+              <PropertyRef Name="ThanaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblLocati__CityI__59063A47">
+          <End Role="tblCity" Type="Self.tblCity" Multiplicity="0..1" />
+          <End Role="tblLocation" Type="Self.tblLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCity">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLocation">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblMess__CityId__1F98B2C1">
+          <End Role="tblCity" Type="Self.tblCity" Multiplicity="0..1" />
+          <End Role="tblMess" Type="Self.tblMess" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCity">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblMess">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblMess__Locatio__208CD6FA">
+          <End Role="tblLocation" Type="Self.tblLocation" Multiplicity="0..1" />
+          <End Role="tblMess" Type="Self.tblMess" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLocation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblMess">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblThana__Distri__182C9B23">
+          <End Role="tblDistrict" Type="Self.tblDistrict" Multiplicity="0..1" />
+          <End Role="tblThana" Type="Self.tblThana" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDistrict">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblThana">
+              <PropertyRef Name="DistrictId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblTourSp__Categ__24927208">
+          <End Role="tblCategory" Type="Self.tblCategory" Multiplicity="0..1" />
+          <End Role="tblTourSpot" Type="Self.tblTourSpot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblTourSpot">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblTourSp__Distr__267ABA7A">
+          <End Role="tblDistrict" Type="Self.tblDistrict" Multiplicity="0..1" />
+          <End Role="tblTourSpot" Type="Self.tblTourSpot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDistrict">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblTourSpot">
+              <PropertyRef Name="DistrictId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblTourSp__Divis__25869641">
+          <End Role="tblDivision" Type="Self.tblDivision" Multiplicity="0..1" />
+          <End Role="tblTourSpot" Type="Self.tblTourSpot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDivision">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblTourSpot">
+              <PropertyRef Name="DivisionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblTourSp__Thana__276EDEB3">
+          <End Role="tblThana" Type="Self.tblThana" Multiplicity="0..1" />
+          <End Role="tblTourSpot" Type="Self.tblTourSpot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblThana">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblTourSpot">
+              <PropertyRef Name="ThanaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblTourSp__TourS__3A81B327">
+          <End Role="tblTourSpot" Type="Self.tblTourSpot" Multiplicity="0..1" />
+          <End Role="tblTourSpotImage" Type="Self.tblTourSpotImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTourSpot">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblTourSpotImage">
+              <PropertyRef Name="TourSpotId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TravelHot__TourS__2A4B4B5E">
+          <End Role="tblTourSpot" Type="Self.tblTourSpot" Multiplicity="0..1" />
+          <End Role="TravelHotel" Type="Self.TravelHotel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTourSpot">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TravelHotel">
+              <PropertyRef Name="TourSpotId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AddressDatabbaseModelStoreContainer">
+          <EntitySet Name="HomeStay" EntityType="Self.HomeStay" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HospitalServiceAllocation" EntityType="Self.HospitalServiceAllocation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblBusAssignToStation" EntityType="Self.tblBusAssignToStation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblBusCompany" EntityType="Self.tblBusCompany" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblBusStaion" EntityType="Self.tblBusStaion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCategory" EntityType="Self.tblCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCity" EntityType="Self.tblCity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblDistrict" EntityType="Self.tblDistrict" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblDivision" EntityType="Self.tblDivision" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblDoctor" EntityType="Self.tblDoctor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblDoctorType" EntityType="Self.tblDoctorType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblFlat" EntityType="Self.tblFlat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblHospital" EntityType="Self.tblHospital" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblHospitalService" EntityType="Self.tblHospitalService" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblHospitalType" EntityType="Self.tblHospitalType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblHotelImage" EntityType="Self.tblHotelImage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblLawerType" EntityType="Self.tblLawerType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblLawyer" EntityType="Self.tblLawyer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblLCourt" EntityType="Self.tblLCourt" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblLocation" EntityType="Self.tblLocation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMess" EntityType="Self.tblMess" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblThana" EntityType="Self.tblThana" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblTourSpot" EntityType="Self.tblTourSpot" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblTourSpotImage" EntityType="Self.tblTourSpotImage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TravelHotel" EntityType="Self.TravelHotel" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__HomeStay__TourSp__2D27B809" Association="Self.FK__HomeStay__TourSp__2D27B809">
+            <End Role="tblTourSpot" EntitySet="tblTourSpot" />
+            <End Role="HomeStay" EntitySet="HomeStay" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HospitalS__Hospi__4BAC3F29" Association="Self.FK__HospitalS__Hospi__4BAC3F29">
+            <End Role="tblHospitalService" EntitySet="tblHospitalService" />
+            <End Role="HospitalServiceAllocation" EntitySet="HospitalServiceAllocation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HospitalS__Servi__4CA06362" Association="Self.FK__HospitalS__Servi__4CA06362">
+            <End Role="tblHospital" EntitySet="tblHospital" />
+            <End Role="HospitalServiceAllocation" EntitySet="HospitalServiceAllocation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblBusAss__BusId__1ED998B2" Association="Self.FK__tblBusAss__BusId__1ED998B2">
+            <End Role="tblBusCompany" EntitySet="tblBusCompany" />
+            <End Role="tblBusAssignToStation" EntitySet="tblBusAssignToStation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblBusAss__Stati__1FCDBCEB" Association="Self.FK__tblBusAss__Stati__1FCDBCEB">
+            <End Role="tblBusStaion" EntitySet="tblBusStaion" />
+            <End Role="tblBusAssignToStation" EntitySet="tblBusAssignToStation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblDistri__Divis__15502E78" Association="Self.FK__tblDistri__Divis__15502E78">
+            <End Role="tblDivision" EntitySet="tblDivision" />
+            <End Role="tblDistrict" EntitySet="tblDistrict" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblDoctor__CityI__17036CC0" Association="Self.FK__tblDoctor__CityI__17036CC0">
+            <End Role="tblCity" EntitySet="tblCity" />
+            <End Role="tblDoctor" EntitySet="tblDoctor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblDoctor__Distr__14270015" Association="Self.FK__tblDoctor__Distr__14270015">
+            <End Role="tblDistrict" EntitySet="tblDistrict" />
+            <End Role="tblDoctor" EntitySet="tblDoctor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblDoctor__Divis__1332DBDC" Association="Self.FK__tblDoctor__Divis__1332DBDC">
+            <End Role="tblDivision" EntitySet="tblDivision" />
+            <End Role="tblDoctor" EntitySet="tblDoctor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblDoctor__Docto__123EB7A3" Association="Self.FK__tblDoctor__Docto__123EB7A3">
+            <End Role="tblDoctorType" EntitySet="tblDoctorType" />
+            <End Role="tblDoctor" EntitySet="tblDoctor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblDoctor__Hospi__114A936A" Association="Self.FK__tblDoctor__Hospi__114A936A">
+            <End Role="tblHospital" EntitySet="tblHospital" />
+            <End Role="tblDoctor" EntitySet="tblDoctor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblDoctor__Locat__160F4887" Association="Self.FK__tblDoctor__Locat__160F4887">
+            <End Role="tblLocation" EntitySet="tblLocation" />
+            <End Role="tblDoctor" EntitySet="tblDoctor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblDoctor__Thana__151B244E" Association="Self.FK__tblDoctor__Thana__151B244E">
+            <End Role="tblThana" EntitySet="tblThana" />
+            <End Role="tblDoctor" EntitySet="tblDoctor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblFlat__CityId__236943A5" Association="Self.FK__tblFlat__CityId__236943A5">
+            <End Role="tblCity" EntitySet="tblCity" />
+            <End Role="tblFlat" EntitySet="tblFlat" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblFlat__Locatio__245D67DE" Association="Self.FK__tblFlat__Locatio__245D67DE">
+            <End Role="tblLocation" EntitySet="tblLocation" />
+            <End Role="tblFlat" EntitySet="tblFlat" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblHospit__CityI__46E78A0C" Association="Self.FK__tblHospit__CityI__46E78A0C">
+            <End Role="tblCity" EntitySet="tblCity" />
+            <End Role="tblHospital" EntitySet="tblHospital" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblHospit__Distr__44FF419A" Association="Self.FK__tblHospit__Distr__44FF419A">
+            <End Role="tblDistrict" EntitySet="tblDistrict" />
+            <End Role="tblHospital" EntitySet="tblHospital" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblHospit__Divis__440B1D61" Association="Self.FK__tblHospit__Divis__440B1D61">
+            <End Role="tblDivision" EntitySet="tblDivision" />
+            <End Role="tblHospital" EntitySet="tblHospital" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblHospit__Locat__0C85DE4D" Association="Self.FK__tblHospit__Locat__0C85DE4D">
+            <End Role="tblCity" EntitySet="tblCity" />
+            <End Role="tblHospital" EntitySet="tblHospital" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblHospit__Thana__45F365D3" Association="Self.FK__tblHospit__Thana__45F365D3">
+            <End Role="tblThana" EntitySet="tblThana" />
+            <End Role="tblHospital" EntitySet="tblHospital" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblHotelI__TourS__3D5E1FD2" Association="Self.FK__tblHotelI__TourS__3D5E1FD2">
+            <End Role="tblTourSpot" EntitySet="tblTourSpot" />
+            <End Role="tblHotelImage" EntitySet="tblHotelImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblLawyer__CityI__2DE6D218" Association="Self.FK__tblLawyer__CityI__2DE6D218">
+            <End Role="tblCity" EntitySet="tblCity" />
+            <End Role="tblLawyer" EntitySet="tblLawyer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblLawyer__Court__2BFE89A6" Association="Self.FK__tblLawyer__Court__2BFE89A6">
+            <End Role="tblLCourt" EntitySet="tblLCourt" />
+            <End Role="tblLawyer" EntitySet="tblLawyer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblLawyer__Distr__2FCF1A8A" Association="Self.FK__tblLawyer__Distr__2FCF1A8A">
+            <End Role="tblDistrict" EntitySet="tblDistrict" />
+            <End Role="tblLawyer" EntitySet="tblLawyer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblLawyer__Divis__2EDAF651" Association="Self.FK__tblLawyer__Divis__2EDAF651">
+            <End Role="tblDivision" EntitySet="tblDivision" />
+            <End Role="tblLawyer" EntitySet="tblLawyer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblLawyer__lawye__2CF2ADDF" Association="Self.FK__tblLawyer__lawye__2CF2ADDF">
+            <End Role="tblLawerType" EntitySet="tblLawerType" />
+            <End Role="tblLawyer" EntitySet="tblLawyer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblLawyer__Locat__31B762FC" Association="Self.FK__tblLawyer__Locat__31B762FC">
+            <End Role="tblLocation" EntitySet="tblLocation" />
+            <End Role="tblLawyer" EntitySet="tblLawyer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblLawyer__Thana__30C33EC3" Association="Self.FK__tblLawyer__Thana__30C33EC3">
+            <End Role="tblThana" EntitySet="tblThana" />
+            <End Role="tblLawyer" EntitySet="tblLawyer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblLocati__CityI__59063A47" Association="Self.FK__tblLocati__CityI__59063A47">
+            <End Role="tblCity" EntitySet="tblCity" />
+            <End Role="tblLocation" EntitySet="tblLocation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblMess__CityId__1F98B2C1" Association="Self.FK__tblMess__CityId__1F98B2C1">
+            <End Role="tblCity" EntitySet="tblCity" />
+            <End Role="tblMess" EntitySet="tblMess" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblMess__Locatio__208CD6FA" Association="Self.FK__tblMess__Locatio__208CD6FA">
+            <End Role="tblLocation" EntitySet="tblLocation" />
+            <End Role="tblMess" EntitySet="tblMess" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblThana__Distri__182C9B23" Association="Self.FK__tblThana__Distri__182C9B23">
+            <End Role="tblDistrict" EntitySet="tblDistrict" />
+            <End Role="tblThana" EntitySet="tblThana" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblTourSp__Categ__24927208" Association="Self.FK__tblTourSp__Categ__24927208">
+            <End Role="tblCategory" EntitySet="tblCategory" />
+            <End Role="tblTourSpot" EntitySet="tblTourSpot" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblTourSp__Distr__267ABA7A" Association="Self.FK__tblTourSp__Distr__267ABA7A">
+            <End Role="tblDistrict" EntitySet="tblDistrict" />
+            <End Role="tblTourSpot" EntitySet="tblTourSpot" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblTourSp__Divis__25869641" Association="Self.FK__tblTourSp__Divis__25869641">
+            <End Role="tblDivision" EntitySet="tblDivision" />
+            <End Role="tblTourSpot" EntitySet="tblTourSpot" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblTourSp__Thana__276EDEB3" Association="Self.FK__tblTourSp__Thana__276EDEB3">
+            <End Role="tblThana" EntitySet="tblThana" />
+            <End Role="tblTourSpot" EntitySet="tblTourSpot" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblTourSp__TourS__3A81B327" Association="Self.FK__tblTourSp__TourS__3A81B327">
+            <End Role="tblTourSpot" EntitySet="tblTourSpot" />
+            <End Role="tblTourSpotImage" EntitySet="tblTourSpotImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TravelHot__TourS__2A4B4B5E" Association="Self.FK__TravelHot__TourS__2A4B4B5E">
+            <End Role="tblTourSpot" EntitySet="tblTourSpot" />
+            <End Role="TravelHotel" EntitySet="TravelHotel" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AddressDatabbaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="HomeStay">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EstimatedPrice" Type="Double" />
+          <Property Name="TourSpotId" Type="Int32" />
+          <Property Name="HotelWebsitesUrl" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="location" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PostedDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="tblTourSpot" Relationship="Self.FK__HomeStay__TourSp__2D27B809" FromRole="HomeStay" ToRole="tblTourSpot" />
+        </EntityType>
+        <EntityType Name="HospitalServiceAllocation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HospitalId" Type="Int32" />
+          <Property Name="ServiceId" Type="Int32" />
+          <NavigationProperty Name="tblHospitalService" Relationship="Self.FK__HospitalS__Hospi__4BAC3F29" FromRole="HospitalServiceAllocation" ToRole="tblHospitalService" />
+          <NavigationProperty Name="tblHospital" Relationship="Self.FK__HospitalS__Servi__4CA06362" FromRole="HospitalServiceAllocation" ToRole="tblHospital" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tblBusAssignToStation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BusId" Type="Int32" />
+          <Property Name="StationId" Type="Int32" />
+          <NavigationProperty Name="tblBusCompany" Relationship="Self.FK__tblBusAss__BusId__1ED998B2" FromRole="tblBusAssignToStation" ToRole="tblBusCompany" />
+          <NavigationProperty Name="tblBusStaion" Relationship="Self.FK__tblBusAss__Stati__1FCDBCEB" FromRole="tblBusAssignToStation" ToRole="tblBusStaion" />
+        </EntityType>
+        <EntityType Name="tblBusCompany">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="BusName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Route" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="OwnerName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="OwnerContactInformation" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblBusAssignToStations" Relationship="Self.FK__tblBusAss__BusId__1ED998B2" FromRole="tblBusCompany" ToRole="tblBusAssignToStation" />
+        </EntityType>
+        <EntityType Name="tblBusStaion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="location" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblBusAssignToStations" Relationship="Self.FK__tblBusAss__Stati__1FCDBCEB" FromRole="tblBusStaion" ToRole="tblBusAssignToStation" />
+        </EntityType>
+        <EntityType Name="tblCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblTourSpots" Relationship="Self.FK__tblTourSp__Categ__24927208" FromRole="tblCategory" ToRole="tblTourSpot" />
+        </EntityType>
+        <EntityType Name="tblCity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblDoctors" Relationship="Self.FK__tblDoctor__CityI__17036CC0" FromRole="tblCity" ToRole="tblDoctor" />
+          <NavigationProperty Name="tblFlats" Relationship="Self.FK__tblFlat__CityId__236943A5" FromRole="tblCity" ToRole="tblFlat" />
+          <NavigationProperty Name="tblHospitals" Relationship="Self.FK__tblHospit__CityI__46E78A0C" FromRole="tblCity" ToRole="tblHospital" />
+          <NavigationProperty Name="tblHospitals1" Relationship="Self.FK__tblHospit__Locat__0C85DE4D" FromRole="tblCity" ToRole="tblHospital" />
+          <NavigationProperty Name="tblLawyers" Relationship="Self.FK__tblLawyer__CityI__2DE6D218" FromRole="tblCity" ToRole="tblLawyer" />
+          <NavigationProperty Name="tblLocations" Relationship="Self.FK__tblLocati__CityI__59063A47" FromRole="tblCity" ToRole="tblLocation" />
+          <NavigationProperty Name="tblMesses" Relationship="Self.FK__tblMess__CityId__1F98B2C1" FromRole="tblCity" ToRole="tblMess" />
+        </EntityType>
+        <EntityType Name="tblDistrict">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DivisionId" Type="Int32" />
+          <NavigationProperty Name="tblDivision" Relationship="Self.FK__tblDistri__Divis__15502E78" FromRole="tblDistrict" ToRole="tblDivision" />
+          <NavigationProperty Name="tblDoctors" Relationship="Self.FK__tblDoctor__Distr__14270015" FromRole="tblDistrict" ToRole="tblDoctor" />
+          <NavigationProperty Name="tblHospitals" Relationship="Self.FK__tblHospit__Distr__44FF419A" FromRole="tblDistrict" ToRole="tblHospital" />
+          <NavigationProperty Name="tblLawyers" Relationship="Self.FK__tblLawyer__Distr__2FCF1A8A" FromRole="tblDistrict" ToRole="tblLawyer" />
+          <NavigationProperty Name="tblThanas" Relationship="Self.FK__tblThana__Distri__182C9B23" FromRole="tblDistrict" ToRole="tblThana" />
+          <NavigationProperty Name="tblTourSpots" Relationship="Self.FK__tblTourSp__Distr__267ABA7A" FromRole="tblDistrict" ToRole="tblTourSpot" />
+        </EntityType>
+        <EntityType Name="tblDivision">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblDistricts" Relationship="Self.FK__tblDistri__Divis__15502E78" FromRole="tblDivision" ToRole="tblDistrict" />
+          <NavigationProperty Name="tblDoctors" Relationship="Self.FK__tblDoctor__Divis__1332DBDC" FromRole="tblDivision" ToRole="tblDoctor" />
+          <NavigationProperty Name="tblHospitals" Relationship="Self.FK__tblHospit__Divis__440B1D61" FromRole="tblDivision" ToRole="tblHospital" />
+          <NavigationProperty Name="tblLawyers" Relationship="Self.FK__tblLawyer__Divis__2EDAF651" FromRole="tblDivision" ToRole="tblLawyer" />
+          <NavigationProperty Name="tblTourSpots" Relationship="Self.FK__tblTourSp__Divis__25869641" FromRole="tblDivision" ToRole="tblTourSpot" />
+        </EntityType>
+        <EntityType Name="tblDoctor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="imagePath" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="VisitAmountFirstTime" Type="Double" />
+          <Property Name="VisitAmountSecondTime" Type="Double" />
+          <Property Name="Education" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PersonalEmailaddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PersonalWebsite" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PersonalChamber" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="ContactNumber" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="SerialNumber" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="HelthCareTime" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="HospitalId" Type="Int32" />
+          <Property Name="DoctorTypeId" Type="Int32" />
+          <Property Name="DivisionId" Type="Int32" />
+          <Property Name="DistrictId" Type="Int32" />
+          <Property Name="ThanaId" Type="Int32" />
+          <Property Name="LocationId" Type="Int32" />
+          <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CityId" Type="Int32" />
+          <NavigationProperty Name="tblCity" Relationship="Self.FK__tblDoctor__CityI__17036CC0" FromRole="tblDoctor" ToRole="tblCity" />
+          <NavigationProperty Name="tblDistrict" Relationship="Self.FK__tblDoctor__Distr__14270015" FromRole="tblDoctor" ToRole="tblDistrict" />
+          <NavigationProperty Name="tblDivision" Relationship="Self.FK__tblDoctor__Divis__1332DBDC" FromRole="tblDoctor" ToRole="tblDivision" />
+          <NavigationProperty Name="tblDoctorType" Relationship="Self.FK__tblDoctor__Docto__123EB7A3" FromRole="tblDoctor" ToRole="tblDoctorType" />
+          <NavigationProperty Name="tblHospital" Relationship="Self.FK__tblDoctor__Hospi__114A936A" FromRole="tblDoctor" ToRole="tblHospital" />
+          <NavigationProperty Name="tblLocation" Relationship="Self.FK__tblDoctor__Locat__160F4887" FromRole="tblDoctor" ToRole="tblLocation" />
+          <NavigationProperty Name="tblThana" Relationship="Self.FK__tblDoctor__Thana__151B244E" FromRole="tblDoctor" ToRole="tblThana" />
+        </EntityType>
+        <EntityType Name="tblDoctorType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblDoctors" Relationship="Self.FK__tblDoctor__Docto__123EB7A3" FromRole="tblDoctorType" ToRole="tblDoctor" />
+        </EntityType>
+        <EntityType Name="tblFlat">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BuildingName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="imagePath" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ContactNumber" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="CityId" Type="Int32" />
+          <Property Name="LocationId" Type="Int32" />
+          <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EstimatedFlatFare" Type="Double" />
+          <Property Name="Advance" Type="Double" />
+          <Property Name="PostingDate" Type="DateTime" Precision="0" />
+          <Property Name="AvailableMonth" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PostedDate" Type="DateTime" Precision="0" />
+          <Property Name="DeadlineDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="tblCity" Relationship="Self.FK__tblFlat__CityId__236943A5" FromRole="tblFlat" ToRole="tblCity" />
+          <NavigationProperty Name="tblLocation" Relationship="Self.FK__tblFlat__Locatio__245D67DE" FromRole="tblFlat" ToRole="tblLocation" />
+        </EntityType>
+        <EntityType Name="tblHospital">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DivisionId" Type="Int32" />
+          <Property Name="DistrictId" Type="Int32" />
+          <Property Name="ThanaId" Type="Int32" />
+          <Property Name="CityId" Type="Int32" />
+          <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="LocationId" Type="Int32" />
+          <NavigationProperty Name="HospitalServiceAllocations" Relationship="Self.FK__HospitalS__Servi__4CA06362" FromRole="tblHospital" ToRole="HospitalServiceAllocation" />
+          <NavigationProperty Name="tblCity" Relationship="Self.FK__tblHospit__CityI__46E78A0C" FromRole="tblHospital" ToRole="tblCity" />
+          <NavigationProperty Name="tblCity1" Relationship="Self.FK__tblHospit__Locat__0C85DE4D" FromRole="tblHospital" ToRole="tblCity" />
+          <NavigationProperty Name="tblDistrict" Relationship="Self.FK__tblHospit__Distr__44FF419A" FromRole="tblHospital" ToRole="tblDistrict" />
+          <NavigationProperty Name="tblDivision" Relationship="Self.FK__tblHospit__Divis__440B1D61" FromRole="tblHospital" ToRole="tblDivision" />
+          <NavigationProperty Name="tblDoctors" Relationship="Self.FK__tblDoctor__Hospi__114A936A" FromRole="tblHospital" ToRole="tblDoctor" />
+          <NavigationProperty Name="tblThana" Relationship="Self.FK__tblHospit__Thana__45F365D3" FromRole="tblHospital" ToRole="tblThana" />
+        </EntityType>
+        <EntityType Name="tblHospitalService">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="EstimatedPrice" Type="Double" />
+          <NavigationProperty Name="HospitalServiceAllocations" Relationship="Self.FK__HospitalS__Hospi__4BAC3F29" FromRole="tblHospitalService" ToRole="HospitalServiceAllocation" />
+        </EntityType>
+        <EntityType Name="tblHospitalType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblHotelImage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ImagePath" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PhotoCreditName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TourSpotId" Type="Int32" />
+          <Property Name="UploadDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="tblTourSpot" Relationship="Self.FK__tblHotelI__TourS__3D5E1FD2" FromRole="tblHotelImage" ToRole="tblTourSpot" />
+        </EntityType>
+        <EntityType Name="tblLawerType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblLawyers" Relationship="Self.FK__tblLawyer__lawye__2CF2ADDF" FromRole="tblLawerType" ToRole="tblLawyer" />
+        </EntityType>
+        <EntityType Name="tblLawyer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="imagePath" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Education" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="PersonalEmailaddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PersonalWebsite" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PersonalChamber" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="ContactNumber" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="EstimatedFee" Type="Double" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CourtId" Type="Int32" />
+          <Property Name="lawyerTypeId" Type="Int32" />
+          <Property Name="CityId" Type="Int32" />
+          <Property Name="DivisionId" Type="Int32" />
+          <Property Name="DistrictId" Type="Int32" />
+          <Property Name="ThanaId" Type="Int32" />
+          <Property Name="LocationId" Type="Int32" />
+          <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblCity" Relationship="Self.FK__tblLawyer__CityI__2DE6D218" FromRole="tblLawyer" ToRole="tblCity" />
+          <NavigationProperty Name="tblDistrict" Relationship="Self.FK__tblLawyer__Distr__2FCF1A8A" FromRole="tblLawyer" ToRole="tblDistrict" />
+          <NavigationProperty Name="tblDivision" Relationship="Self.FK__tblLawyer__Divis__2EDAF651" FromRole="tblLawyer" ToRole="tblDivision" />
+          <NavigationProperty Name="tblLawerType" Relationship="Self.FK__tblLawyer__lawye__2CF2ADDF" FromRole="tblLawyer" ToRole="tblLawerType" />
+          <NavigationProperty Name="tblLCourt" Relationship="Self.FK__tblLawyer__Court__2BFE89A6" FromRole="tblLawyer" ToRole="tblLCourt" />
+          <NavigationProperty Name="tblLocation" Relationship="Self.FK__tblLawyer__Locat__31B762FC" FromRole="tblLawyer" ToRole="tblLocation" />
+          <NavigationProperty Name="tblThana" Relationship="Self.FK__tblLawyer__Thana__30C33EC3" FromRole="tblLawyer" ToRole="tblThana" />
+        </EntityType>
+        <EntityType Name="tblLCourt">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Location" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CourtWebsite" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblLawyers" Relationship="Self.FK__tblLawyer__Court__2BFE89A6" FromRole="tblLCourt" ToRole="tblLawyer" />
+        </EntityType>
+        <EntityType Name="tblLocation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CityId" Type="Int32" />
+          <NavigationProperty Name="tblCity" Relationship="Self.FK__tblLocati__CityI__59063A47" FromRole="tblLocation" ToRole="tblCity" />
+          <NavigationProperty Name="tblDoctors" Relationship="Self.FK__tblDoctor__Locat__160F4887" FromRole="tblLocation" ToRole="tblDoctor" />
+          <NavigationProperty Name="tblFlats" Relationship="Self.FK__tblFlat__Locatio__245D67DE" FromRole="tblLocation" ToRole="tblFlat" />
+          <NavigationProperty Name="tblLawyers" Relationship="Self.FK__tblLawyer__Locat__31B762FC" FromRole="tblLocation" ToRole="tblLawyer" />
+          <NavigationProperty Name="tblMesses" Relationship="Self.FK__tblMess__Locatio__208CD6FA" FromRole="tblLocation" ToRole="tblMess" />
+        </EntityType>
+        <EntityType Name="tblMess">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="imagePath" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ContactNumber" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="ManagerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AvailableSit" Type="Int32" />
+          <Property Name="TotalSit" Type="Int32" />
+          <Property Name="Advance" Type="Double" />
+          <Property Name="EstimatedSitFare" Type="Double" />
+          <Property Name="CityId" Type="Int32" />
+          <Property Name="LocationId" Type="Int32" />
+          <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PostedDate" Type="DateTime" Precision="0" />
+          <Property Name="DeadlineDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="tblCity" Relationship="Self.FK__tblMess__CityId__1F98B2C1" FromRole="tblMess" ToRole="tblCity" />
+          <NavigationProperty Name="tblLocation" Relationship="Self.FK__tblMess__Locatio__208CD6FA" FromRole="tblMess" ToRole="tblLocation" />
+        </EntityType>
+        <EntityType Name="tblThana">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DistrictId" Type="Int32" />
+          <NavigationProperty Name="tblDistrict" Relationship="Self.FK__tblThana__Distri__182C9B23" FromRole="tblThana" ToRole="tblDistrict" />
+          <NavigationProperty Name="tblDoctors" Relationship="Self.FK__tblDoctor__Thana__151B244E" FromRole="tblThana" ToRole="tblDoctor" />
+          <NavigationProperty Name="tblHospitals" Relationship="Self.FK__tblHospit__Thana__45F365D3" FromRole="tblThana" ToRole="tblHospital" />
+          <NavigationProperty Name="tblLawyers" Relationship="Self.FK__tblLawyer__Thana__30C33EC3" FromRole="tblThana" ToRole="tblLawyer" />
+          <NavigationProperty Name="tblTourSpots" Relationship="Self.FK__tblTourSp__Thana__276EDEB3" FromRole="tblThana" ToRole="tblTourSpot" />
+        </EntityType>
+        <EntityType Name="tblTourSpot">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CategoryId" Type="Int32" />
+          <Property Name="DivisionId" Type="Int32" />
+          <Property Name="DistrictId" Type="Int32" />
+          <Property Name="ThanaId" Type="Int32" />
+          <Property Name="location" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="HomeStays" Relationship="Self.FK__HomeStay__TourSp__2D27B809" FromRole="tblTourSpot" ToRole="HomeStay" />
+          <NavigationProperty Name="tblCategory" Relationship="Self.FK__tblTourSp__Categ__24927208" FromRole="tblTourSpot" ToRole="tblCategory" />
+          <NavigationProperty Name="tblDistrict" Relationship="Self.FK__tblTourSp__Distr__267ABA7A" FromRole="tblTourSpot" ToRole="tblDistrict" />
+          <NavigationProperty Name="tblDivision" Relationship="Self.FK__tblTourSp__Divis__25869641" FromRole="tblTourSpot" ToRole="tblDivision" />
+          <NavigationProperty Name="tblHotelImages" Relationship="Self.FK__tblHotelI__TourS__3D5E1FD2" FromRole="tblTourSpot" ToRole="tblHotelImage" />
+          <NavigationProperty Name="tblThana" Relationship="Self.FK__tblTourSp__Thana__276EDEB3" FromRole="tblTourSpot" ToRole="tblThana" />
+          <NavigationProperty Name="tblTourSpotImages" Relationship="Self.FK__tblTourSp__TourS__3A81B327" FromRole="tblTourSpot" ToRole="tblTourSpotImage" />
+          <NavigationProperty Name="TravelHotels" Relationship="Self.FK__TravelHot__TourS__2A4B4B5E" FromRole="tblTourSpot" ToRole="TravelHotel" />
+        </EntityType>
+        <EntityType Name="tblTourSpotImage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ImagePath" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PhotoCreditName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TourSpotId" Type="Int32" />
+          <Property Name="UploadDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="tblTourSpot" Relationship="Self.FK__tblTourSp__TourS__3A81B327" FromRole="tblTourSpotImage" ToRole="tblTourSpot" />
+        </EntityType>
+        <EntityType Name="TravelHotel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EstimatedPrice" Type="Double" />
+          <Property Name="TourSpotId" Type="Int32" />
+          <Property Name="HotelWebsitesUrl" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="location" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PostedDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="tblTourSpot" Relationship="Self.FK__TravelHot__TourS__2A4B4B5E" FromRole="TravelHotel" ToRole="tblTourSpot" />
+        </EntityType>
+        <Association Name="FK__HomeStay__TourSp__2D27B809">
+          <End Role="tblTourSpot" Type="Self.tblTourSpot" Multiplicity="0..1" />
+          <End Role="HomeStay" Type="Self.HomeStay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTourSpot">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HomeStay">
+              <PropertyRef Name="TourSpotId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HospitalS__Hospi__4BAC3F29">
+          <End Role="tblHospitalService" Type="Self.tblHospitalService" Multiplicity="0..1" />
+          <End Role="HospitalServiceAllocation" Type="Self.HospitalServiceAllocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblHospitalService">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HospitalServiceAllocation">
+              <PropertyRef Name="HospitalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HospitalS__Servi__4CA06362">
+          <End Role="tblHospital" Type="Self.tblHospital" Multiplicity="0..1" />
+          <End Role="HospitalServiceAllocation" Type="Self.HospitalServiceAllocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblHospital">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HospitalServiceAllocation">
+              <PropertyRef Name="ServiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblBusAss__BusId__1ED998B2">
+          <End Role="tblBusCompany" Type="Self.tblBusCompany" Multiplicity="0..1" />
+          <End Role="tblBusAssignToStation" Type="Self.tblBusAssignToStation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBusCompany">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblBusAssignToStation">
+              <PropertyRef Name="BusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblBusAss__Stati__1FCDBCEB">
+          <End Role="tblBusStaion" Type="Self.tblBusStaion" Multiplicity="0..1" />
+          <End Role="tblBusAssignToStation" Type="Self.tblBusAssignToStation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBusStaion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblBusAssignToStation">
+              <PropertyRef Name="StationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblTourSp__Categ__24927208">
+          <End Role="tblCategory" Type="Self.tblCategory" Multiplicity="0..1" />
+          <End Role="tblTourSpot" Type="Self.tblTourSpot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblTourSpot">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblDoctor__CityI__17036CC0">
+          <End Role="tblCity" Type="Self.tblCity" Multiplicity="0..1" />
+          <End Role="tblDoctor" Type="Self.tblDoctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCity">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblDoctor">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblFlat__CityId__236943A5">
+          <End Role="tblCity" Type="Self.tblCity" Multiplicity="0..1" />
+          <End Role="tblFlat" Type="Self.tblFlat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCity">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblFlat">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblHospit__CityI__46E78A0C">
+          <End Role="tblCity" Type="Self.tblCity" Multiplicity="0..1" />
+          <End Role="tblHospital" Type="Self.tblHospital" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCity">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblHospital">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblHospit__Locat__0C85DE4D">
+          <End Role="tblCity" Type="Self.tblCity" Multiplicity="0..1" />
+          <End Role="tblHospital" Type="Self.tblHospital" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCity">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblHospital">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblLawyer__CityI__2DE6D218">
+          <End Role="tblCity" Type="Self.tblCity" Multiplicity="0..1" />
+          <End Role="tblLawyer" Type="Self.tblLawyer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCity">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLawyer">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblLocati__CityI__59063A47">
+          <End Role="tblCity" Type="Self.tblCity" Multiplicity="0..1" />
+          <End Role="tblLocation" Type="Self.tblLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCity">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLocation">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblMess__CityId__1F98B2C1">
+          <End Role="tblCity" Type="Self.tblCity" Multiplicity="0..1" />
+          <End Role="tblMess" Type="Self.tblMess" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCity">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblMess">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblDistri__Divis__15502E78">
+          <End Role="tblDivision" Type="Self.tblDivision" Multiplicity="0..1" />
+          <End Role="tblDistrict" Type="Self.tblDistrict" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDivision">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblDistrict">
+              <PropertyRef Name="DivisionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblDoctor__Distr__14270015">
+          <End Role="tblDistrict" Type="Self.tblDistrict" Multiplicity="0..1" />
+          <End Role="tblDoctor" Type="Self.tblDoctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDistrict">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblDoctor">
+              <PropertyRef Name="DistrictId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblHospit__Distr__44FF419A">
+          <End Role="tblDistrict" Type="Self.tblDistrict" Multiplicity="0..1" />
+          <End Role="tblHospital" Type="Self.tblHospital" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDistrict">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblHospital">
+              <PropertyRef Name="DistrictId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblLawyer__Distr__2FCF1A8A">
+          <End Role="tblDistrict" Type="Self.tblDistrict" Multiplicity="0..1" />
+          <End Role="tblLawyer" Type="Self.tblLawyer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDistrict">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLawyer">
+              <PropertyRef Name="DistrictId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblThana__Distri__182C9B23">
+          <End Role="tblDistrict" Type="Self.tblDistrict" Multiplicity="0..1" />
+          <End Role="tblThana" Type="Self.tblThana" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDistrict">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblThana">
+              <PropertyRef Name="DistrictId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblTourSp__Distr__267ABA7A">
+          <End Role="tblDistrict" Type="Self.tblDistrict" Multiplicity="0..1" />
+          <End Role="tblTourSpot" Type="Self.tblTourSpot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDistrict">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblTourSpot">
+              <PropertyRef Name="DistrictId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblDoctor__Divis__1332DBDC">
+          <End Role="tblDivision" Type="Self.tblDivision" Multiplicity="0..1" />
+          <End Role="tblDoctor" Type="Self.tblDoctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDivision">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblDoctor">
+              <PropertyRef Name="DivisionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblHospit__Divis__440B1D61">
+          <End Role="tblDivision" Type="Self.tblDivision" Multiplicity="0..1" />
+          <End Role="tblHospital" Type="Self.tblHospital" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDivision">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblHospital">
+              <PropertyRef Name="DivisionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblLawyer__Divis__2EDAF651">
+          <End Role="tblDivision" Type="Self.tblDivision" Multiplicity="0..1" />
+          <End Role="tblLawyer" Type="Self.tblLawyer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDivision">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLawyer">
+              <PropertyRef Name="DivisionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblTourSp__Divis__25869641">
+          <End Role="tblDivision" Type="Self.tblDivision" Multiplicity="0..1" />
+          <End Role="tblTourSpot" Type="Self.tblTourSpot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDivision">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblTourSpot">
+              <PropertyRef Name="DivisionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblDoctor__Docto__123EB7A3">
+          <End Role="tblDoctorType" Type="Self.tblDoctorType" Multiplicity="0..1" />
+          <End Role="tblDoctor" Type="Self.tblDoctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDoctorType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblDoctor">
+              <PropertyRef Name="DoctorTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblDoctor__Hospi__114A936A">
+          <End Role="tblHospital" Type="Self.tblHospital" Multiplicity="0..1" />
+          <End Role="tblDoctor" Type="Self.tblDoctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblHospital">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblDoctor">
+              <PropertyRef Name="HospitalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblDoctor__Locat__160F4887">
+          <End Role="tblLocation" Type="Self.tblLocation" Multiplicity="0..1" />
+          <End Role="tblDoctor" Type="Self.tblDoctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLocation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblDoctor">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblDoctor__Thana__151B244E">
+          <End Role="tblThana" Type="Self.tblThana" Multiplicity="0..1" />
+          <End Role="tblDoctor" Type="Self.tblDoctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblThana">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblDoctor">
+              <PropertyRef Name="ThanaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblFlat__Locatio__245D67DE">
+          <End Role="tblLocation" Type="Self.tblLocation" Multiplicity="0..1" />
+          <End Role="tblFlat" Type="Self.tblFlat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLocation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblFlat">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblHospit__Thana__45F365D3">
+          <End Role="tblThana" Type="Self.tblThana" Multiplicity="0..1" />
+          <End Role="tblHospital" Type="Self.tblHospital" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblThana">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblHospital">
+              <PropertyRef Name="ThanaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblHotelI__TourS__3D5E1FD2">
+          <End Role="tblTourSpot" Type="Self.tblTourSpot" Multiplicity="0..1" />
+          <End Role="tblHotelImage" Type="Self.tblHotelImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTourSpot">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblHotelImage">
+              <PropertyRef Name="TourSpotId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblLawyer__lawye__2CF2ADDF">
+          <End Role="tblLawerType" Type="Self.tblLawerType" Multiplicity="0..1" />
+          <End Role="tblLawyer" Type="Self.tblLawyer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLawerType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLawyer">
+              <PropertyRef Name="lawyerTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblLawyer__Court__2BFE89A6">
+          <End Role="tblLCourt" Type="Self.tblLCourt" Multiplicity="0..1" />
+          <End Role="tblLawyer" Type="Self.tblLawyer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLCourt">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLawyer">
+              <PropertyRef Name="CourtId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblLawyer__Locat__31B762FC">
+          <End Role="tblLocation" Type="Self.tblLocation" Multiplicity="0..1" />
+          <End Role="tblLawyer" Type="Self.tblLawyer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLocation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLawyer">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblLawyer__Thana__30C33EC3">
+          <End Role="tblThana" Type="Self.tblThana" Multiplicity="0..1" />
+          <End Role="tblLawyer" Type="Self.tblLawyer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblThana">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblLawyer">
+              <PropertyRef Name="ThanaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblMess__Locatio__208CD6FA">
+          <End Role="tblLocation" Type="Self.tblLocation" Multiplicity="0..1" />
+          <End Role="tblMess" Type="Self.tblMess" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLocation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblMess">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblTourSp__Thana__276EDEB3">
+          <End Role="tblThana" Type="Self.tblThana" Multiplicity="0..1" />
+          <End Role="tblTourSpot" Type="Self.tblTourSpot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblThana">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblTourSpot">
+              <PropertyRef Name="ThanaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblTourSp__TourS__3A81B327">
+          <End Role="tblTourSpot" Type="Self.tblTourSpot" Multiplicity="0..1" />
+          <End Role="tblTourSpotImage" Type="Self.tblTourSpotImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTourSpot">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblTourSpotImage">
+              <PropertyRef Name="TourSpotId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TravelHot__TourS__2A4B4B5E">
+          <End Role="tblTourSpot" Type="Self.tblTourSpot" Multiplicity="0..1" />
+          <End Role="TravelHotel" Type="Self.TravelHotel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTourSpot">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TravelHotel">
+              <PropertyRef Name="TourSpotId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AddressDatabbaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="HomeStays" EntityType="Self.HomeStay" />
+          <EntitySet Name="HospitalServiceAllocations" EntityType="Self.HospitalServiceAllocation" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="tblBusAssignToStations" EntityType="Self.tblBusAssignToStation" />
+          <EntitySet Name="tblBusCompanies" EntityType="Self.tblBusCompany" />
+          <EntitySet Name="tblBusStaions" EntityType="Self.tblBusStaion" />
+          <EntitySet Name="tblCategories" EntityType="Self.tblCategory" />
+          <EntitySet Name="tblCities" EntityType="Self.tblCity" />
+          <EntitySet Name="tblDistricts" EntityType="Self.tblDistrict" />
+          <EntitySet Name="tblDivisions" EntityType="Self.tblDivision" />
+          <EntitySet Name="tblDoctors" EntityType="Self.tblDoctor" />
+          <EntitySet Name="tblDoctorTypes" EntityType="Self.tblDoctorType" />
+          <EntitySet Name="tblFlats" EntityType="Self.tblFlat" />
+          <EntitySet Name="tblHospitals" EntityType="Self.tblHospital" />
+          <EntitySet Name="tblHospitalServices" EntityType="Self.tblHospitalService" />
+          <EntitySet Name="tblHospitalTypes" EntityType="Self.tblHospitalType" />
+          <EntitySet Name="tblHotelImages" EntityType="Self.tblHotelImage" />
+          <EntitySet Name="tblLawerTypes" EntityType="Self.tblLawerType" />
+          <EntitySet Name="tblLawyers" EntityType="Self.tblLawyer" />
+          <EntitySet Name="tblLCourts" EntityType="Self.tblLCourt" />
+          <EntitySet Name="tblLocations" EntityType="Self.tblLocation" />
+          <EntitySet Name="tblMesses" EntityType="Self.tblMess" />
+          <EntitySet Name="tblThanas" EntityType="Self.tblThana" />
+          <EntitySet Name="tblTourSpots" EntityType="Self.tblTourSpot" />
+          <EntitySet Name="tblTourSpotImages" EntityType="Self.tblTourSpotImage" />
+          <EntitySet Name="TravelHotels" EntityType="Self.TravelHotel" />
+          <AssociationSet Name="FK__HomeStay__TourSp__2D27B809" Association="Self.FK__HomeStay__TourSp__2D27B809">
+            <End Role="tblTourSpot" EntitySet="tblTourSpots" />
+            <End Role="HomeStay" EntitySet="HomeStays" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HospitalS__Hospi__4BAC3F29" Association="Self.FK__HospitalS__Hospi__4BAC3F29">
+            <End Role="tblHospitalService" EntitySet="tblHospitalServices" />
+            <End Role="HospitalServiceAllocation" EntitySet="HospitalServiceAllocations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HospitalS__Servi__4CA06362" Association="Self.FK__HospitalS__Servi__4CA06362">
+            <End Role="tblHospital" EntitySet="tblHospitals" />
+            <End Role="HospitalServiceAllocation" EntitySet="HospitalServiceAllocations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblBusAss__BusId__1ED998B2" Association="Self.FK__tblBusAss__BusId__1ED998B2">
+            <End Role="tblBusCompany" EntitySet="tblBusCompanies" />
+            <End Role="tblBusAssignToStation" EntitySet="tblBusAssignToStations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblBusAss__Stati__1FCDBCEB" Association="Self.FK__tblBusAss__Stati__1FCDBCEB">
+            <End Role="tblBusStaion" EntitySet="tblBusStaions" />
+            <End Role="tblBusAssignToStation" EntitySet="tblBusAssignToStations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblTourSp__Categ__24927208" Association="Self.FK__tblTourSp__Categ__24927208">
+            <End Role="tblCategory" EntitySet="tblCategories" />
+            <End Role="tblTourSpot" EntitySet="tblTourSpots" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblDoctor__CityI__17036CC0" Association="Self.FK__tblDoctor__CityI__17036CC0">
+            <End Role="tblCity" EntitySet="tblCities" />
+            <End Role="tblDoctor" EntitySet="tblDoctors" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblFlat__CityId__236943A5" Association="Self.FK__tblFlat__CityId__236943A5">
+            <End Role="tblCity" EntitySet="tblCities" />
+            <End Role="tblFlat" EntitySet="tblFlats" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblHospit__CityI__46E78A0C" Association="Self.FK__tblHospit__CityI__46E78A0C">
+            <End Role="tblCity" EntitySet="tblCities" />
+            <End Role="tblHospital" EntitySet="tblHospitals" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblHospit__Locat__0C85DE4D" Association="Self.FK__tblHospit__Locat__0C85DE4D">
+            <End Role="tblCity" EntitySet="tblCities" />
+            <End Role="tblHospital" EntitySet="tblHospitals" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblLawyer__CityI__2DE6D218" Association="Self.FK__tblLawyer__CityI__2DE6D218">
+            <End Role="tblCity" EntitySet="tblCities" />
+            <End Role="tblLawyer" EntitySet="tblLawyers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblLocati__CityI__59063A47" Association="Self.FK__tblLocati__CityI__59063A47">
+            <End Role="tblCity" EntitySet="tblCities" />
+            <End Role="tblLocation" EntitySet="tblLocations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblMess__CityId__1F98B2C1" Association="Self.FK__tblMess__CityId__1F98B2C1">
+            <End Role="tblCity" EntitySet="tblCities" />
+            <End Role="tblMess" EntitySet="tblMesses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblDistri__Divis__15502E78" Association="Self.FK__tblDistri__Divis__15502E78">
+            <End Role="tblDivision" EntitySet="tblDivisions" />
+            <End Role="tblDistrict" EntitySet="tblDistricts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblDoctor__Distr__14270015" Association="Self.FK__tblDoctor__Distr__14270015">
+            <End Role="tblDistrict" EntitySet="tblDistricts" />
+            <End Role="tblDoctor" EntitySet="tblDoctors" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblHospit__Distr__44FF419A" Association="Self.FK__tblHospit__Distr__44FF419A">
+            <End Role="tblDistrict" EntitySet="tblDistricts" />
+            <End Role="tblHospital" EntitySet="tblHospitals" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblLawyer__Distr__2FCF1A8A" Association="Self.FK__tblLawyer__Distr__2FCF1A8A">
+            <End Role="tblDistrict" EntitySet="tblDistricts" />
+            <End Role="tblLawyer" EntitySet="tblLawyers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblThana__Distri__182C9B23" Association="Self.FK__tblThana__Distri__182C9B23">
+            <End Role="tblDistrict" EntitySet="tblDistricts" />
+            <End Role="tblThana" EntitySet="tblThanas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblTourSp__Distr__267ABA7A" Association="Self.FK__tblTourSp__Distr__267ABA7A">
+            <End Role="tblDistrict" EntitySet="tblDistricts" />
+            <End Role="tblTourSpot" EntitySet="tblTourSpots" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblDoctor__Divis__1332DBDC" Association="Self.FK__tblDoctor__Divis__1332DBDC">
+            <End Role="tblDivision" EntitySet="tblDivisions" />
+            <End Role="tblDoctor" EntitySet="tblDoctors" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblHospit__Divis__440B1D61" Association="Self.FK__tblHospit__Divis__440B1D61">
+            <End Role="tblDivision" EntitySet="tblDivisions" />
+            <End Role="tblHospital" EntitySet="tblHospitals" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblLawyer__Divis__2EDAF651" Association="Self.FK__tblLawyer__Divis__2EDAF651">
+            <End Role="tblDivision" EntitySet="tblDivisions" />
+            <End Role="tblLawyer" EntitySet="tblLawyers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblTourSp__Divis__25869641" Association="Self.FK__tblTourSp__Divis__25869641">
+            <End Role="tblDivision" EntitySet="tblDivisions" />
+            <End Role="tblTourSpot" EntitySet="tblTourSpots" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblDoctor__Docto__123EB7A3" Association="Self.FK__tblDoctor__Docto__123EB7A3">
+            <End Role="tblDoctorType" EntitySet="tblDoctorTypes" />
+            <End Role="tblDoctor" EntitySet="tblDoctors" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblDoctor__Hospi__114A936A" Association="Self.FK__tblDoctor__Hospi__114A936A">
+            <End Role="tblHospital" EntitySet="tblHospitals" />
+            <End Role="tblDoctor" EntitySet="tblDoctors" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblDoctor__Locat__160F4887" Association="Self.FK__tblDoctor__Locat__160F4887">
+            <End Role="tblLocation" EntitySet="tblLocations" />
+            <End Role="tblDoctor" EntitySet="tblDoctors" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblDoctor__Thana__151B244E" Association="Self.FK__tblDoctor__Thana__151B244E">
+            <End Role="tblThana" EntitySet="tblThanas" />
+            <End Role="tblDoctor" EntitySet="tblDoctors" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblFlat__Locatio__245D67DE" Association="Self.FK__tblFlat__Locatio__245D67DE">
+            <End Role="tblLocation" EntitySet="tblLocations" />
+            <End Role="tblFlat" EntitySet="tblFlats" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblHospit__Thana__45F365D3" Association="Self.FK__tblHospit__Thana__45F365D3">
+            <End Role="tblThana" EntitySet="tblThanas" />
+            <End Role="tblHospital" EntitySet="tblHospitals" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblHotelI__TourS__3D5E1FD2" Association="Self.FK__tblHotelI__TourS__3D5E1FD2">
+            <End Role="tblTourSpot" EntitySet="tblTourSpots" />
+            <End Role="tblHotelImage" EntitySet="tblHotelImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblLawyer__lawye__2CF2ADDF" Association="Self.FK__tblLawyer__lawye__2CF2ADDF">
+            <End Role="tblLawerType" EntitySet="tblLawerTypes" />
+            <End Role="tblLawyer" EntitySet="tblLawyers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblLawyer__Court__2BFE89A6" Association="Self.FK__tblLawyer__Court__2BFE89A6">
+            <End Role="tblLCourt" EntitySet="tblLCourts" />
+            <End Role="tblLawyer" EntitySet="tblLawyers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblLawyer__Locat__31B762FC" Association="Self.FK__tblLawyer__Locat__31B762FC">
+            <End Role="tblLocation" EntitySet="tblLocations" />
+            <End Role="tblLawyer" EntitySet="tblLawyers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblLawyer__Thana__30C33EC3" Association="Self.FK__tblLawyer__Thana__30C33EC3">
+            <End Role="tblThana" EntitySet="tblThanas" />
+            <End Role="tblLawyer" EntitySet="tblLawyers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblMess__Locatio__208CD6FA" Association="Self.FK__tblMess__Locatio__208CD6FA">
+            <End Role="tblLocation" EntitySet="tblLocations" />
+            <End Role="tblMess" EntitySet="tblMesses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblTourSp__Thana__276EDEB3" Association="Self.FK__tblTourSp__Thana__276EDEB3">
+            <End Role="tblThana" EntitySet="tblThanas" />
+            <End Role="tblTourSpot" EntitySet="tblTourSpots" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblTourSp__TourS__3A81B327" Association="Self.FK__tblTourSp__TourS__3A81B327">
+            <End Role="tblTourSpot" EntitySet="tblTourSpots" />
+            <End Role="tblTourSpotImage" EntitySet="tblTourSpotImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TravelHot__TourS__2A4B4B5E" Association="Self.FK__TravelHot__TourS__2A4B4B5E">
+            <End Role="tblTourSpot" EntitySet="tblTourSpots" />
+            <End Role="TravelHotel" EntitySet="TravelHotels" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AddressDatabbaseModelStoreContainer" CdmEntityContainer="AddressDatabbaseEntities">
+          <EntitySetMapping Name="HomeStays">
+            <EntityTypeMapping TypeName="AddressDatabbaseModel.HomeStay">
+              <MappingFragment StoreEntitySet="HomeStay">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="EstimatedPrice" ColumnName="EstimatedPrice" />
+                <ScalarProperty Name="TourSpotId" ColumnName="TourSpotId" />
+                <ScalarProperty Name="HotelWebsitesUrl" ColumnName="HotelWebsitesUrl" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PostedDate" ColumnName="PostedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HospitalServiceAllocations">
+            <EntityTypeMapping TypeName="AddressDatabbaseModel.HospitalServiceAllocation">
+              <MappingFragment StoreEntitySet="HospitalServiceAllocation">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="HospitalId" ColumnName="HospitalId" />
+                <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="AddressDatabbaseModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblBusAssignToStations">
+            <EntityTypeMapping TypeName="AddressDatabbaseModel.tblBusAssignToStation">
+              <MappingFragment StoreEntitySet="tblBusAssignToStation">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="BusId" ColumnName="BusId" />
+                <ScalarProperty Name="StationId" ColumnName="StationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblBusCompanies">
+            <EntityTypeMapping TypeName="AddressDatabbaseModel.tblBusCompany">
+              <MappingFragment StoreEntitySet="tblBusCompany">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="BusName" ColumnName="BusName" />
+                <ScalarProperty Name="Route" ColumnName="Route" />
+                <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
+                <ScalarProperty Name="OwnerContactInformation" ColumnName="OwnerContactInformation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblBusStaions">
+            <EntityTypeMapping TypeName="AddressDatabbaseModel.tblBusStaion">
+              <MappingFragment StoreEntitySet="tblBusStaion">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="location" ColumnName="location" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCategories">
+            <EntityTypeMapping TypeName="AddressDatabbaseModel.tblCategory">
+              <MappingFragment StoreEntitySet="tblCategory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCities">
+            <EntityTypeMapping TypeName="AddressDatabbaseModel.tblCity">
+              <MappingFragment StoreEntitySet="tblCity">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDistricts">
+            <EntityTypeMapping TypeName="AddressDatabbaseModel.tblDistrict">
+              <MappingFragment StoreEntitySet="tblDistrict">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DivisionId" ColumnName="DivisionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDivisions">
+            <EntityTypeMapping TypeName="AddressDatabbaseModel.tblDivision">
+              <MappingFragment StoreEntitySet="tblDivision">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDoctors">
+            <EntityTypeMapping TypeName="AddressDatabbaseModel.tblDoctor">
+              <MappingFragment StoreEntitySet="tblDoctor">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="imagePath" ColumnName="imagePath" />
+                <ScalarProperty Name="VisitAmountFirstTime" ColumnName="VisitAmountFirstTime" />
+                <ScalarProperty Name="VisitAmountSecondTime" ColumnName="VisitAmountSecondTime" />
+                <ScalarProperty Name="Education" ColumnName="Education" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="PersonalEmailaddress" ColumnName="PersonalEmailaddress" />
+                <ScalarProperty Name="PersonalWebsite" ColumnName="PersonalWebsite" />
+                <ScalarProperty Name="PersonalChamber" ColumnName="PersonalChamber" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+                <ScalarProperty Name="HelthCareTime" ColumnName="HelthCareTime" />
+                <ScalarProperty Name="HospitalId" ColumnName="HospitalId" />
+                <ScalarProperty Name="DoctorTypeId" ColumnName="DoctorTypeId" />
+                <ScalarProperty Name="DivisionId" ColumnName="DivisionId" />
+                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+                <ScalarProperty Name="ThanaId" ColumnName="ThanaId" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDoctorTypes">
+            <EntityTypeMapping TypeName="AddressDatabbaseModel.tblDoctorType">
+              <MappingFragment StoreEntitySet="tblDoctorType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblFlats">
+            <EntityTypeMapping TypeName="AddressDatabbaseModel.tblFlat">
+              <MappingFragment StoreEntitySet="tblFlat">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="BuildingName" ColumnName="BuildingName" />
+                <ScalarProperty Name="imagePath" ColumnName="imagePath" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="EstimatedFlatFare" ColumnName="EstimatedFlatFare" />
+                <ScalarProperty Name="Advance" ColumnName="Advance" />
+                <ScalarProperty Name="PostingDate" ColumnName="PostingDate" />
+                <ScalarProperty Name="AvailableMonth" ColumnName="AvailableMonth" />
+                <ScalarProperty Name="PostedDate" ColumnName="PostedDate" />
+                <ScalarProperty Name="DeadlineDate" ColumnName="DeadlineDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblHospitals">
+            <EntityTypeMapping TypeName="AddressDatabbaseModel.tblHospital">
+              <MappingFragment StoreEntitySet="tblHospital">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DivisionId" ColumnName="DivisionId" />
+                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+                <ScalarProperty Name="ThanaId" ColumnName="ThanaId" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblHospitalServices">
+            <EntityTypeMapping TypeName="AddressDatabbaseModel.tblHospitalService">
+              <MappingFragment StoreEntitySet="tblHospitalService">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="EstimatedPrice" ColumnName="EstimatedPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblHospitalTypes">
+            <EntityTypeMapping TypeName="AddressDatabbaseModel.tblHospitalType">
+              <MappingFragment StoreEntitySet="tblHospitalType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblHotelImages">
+            <EntityTypeMapping TypeName="AddressDatabbaseModel.tblHotelImage">
+              <MappingFragment StoreEntitySet="tblHotelImage">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="PhotoCreditName" ColumnName="PhotoCreditName" />
+                <ScalarProperty Name="TourSpotId" ColumnName="TourSpotId" />
+                <ScalarProperty Name="UploadDate" ColumnName="UploadDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblLawerTypes">
+            <EntityTypeMapping TypeName="AddressDatabbaseModel.tblLawerType">
+              <MappingFragment StoreEntitySet="tblLawerType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblLawyers">
+            <EntityTypeMapping TypeName="AddressDatabbaseModel.tblLawyer">
+              <MappingFragment StoreEntitySet="tblLawyer">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="imagePath" ColumnName="imagePath" />
+                <ScalarProperty Name="Education" ColumnName="Education" />
+                <ScalarProperty Name="PersonalEmailaddress" ColumnName="PersonalEmailaddress" />
+                <ScalarProperty Name="PersonalWebsite" ColumnName="PersonalWebsite" />
+                <ScalarProperty Name="PersonalChamber" ColumnName="PersonalChamber" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="EstimatedFee" ColumnName="EstimatedFee" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CourtId" ColumnName="CourtId" />
+                <ScalarProperty Name="lawyerTypeId" ColumnName="lawyerTypeId" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="DivisionId" ColumnName="DivisionId" />
+                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+                <ScalarProperty Name="ThanaId" ColumnName="ThanaId" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblLCourts">
+            <EntityTypeMapping TypeName="AddressDatabbaseModel.tblLCourt">
+              <MappingFragment StoreEntitySet="tblLCourt">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="CourtWebsite" ColumnName="CourtWebsite" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblLocations">
+            <EntityTypeMapping TypeName="AddressDatabbaseModel.tblLocation">
+              <MappingFragment StoreEntitySet="tblLocation">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMesses">
+            <EntityTypeMapping TypeName="AddressDatabbaseModel.tblMess">
+              <MappingFragment StoreEntitySet="tblMess">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="imagePath" ColumnName="imagePath" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="ManagerName" ColumnName="ManagerName" />
+                <ScalarProperty Name="AvailableSit" ColumnName="AvailableSit" />
+                <ScalarProperty Name="TotalSit" ColumnName="TotalSit" />
+                <ScalarProperty Name="Advance" ColumnName="Advance" />
+                <ScalarProperty Name="EstimatedSitFare" ColumnName="EstimatedSitFare" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="PostedDate" ColumnName="PostedDate" />
+                <ScalarProperty Name="DeadlineDate" ColumnName="DeadlineDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblThanas">
+            <EntityTypeMapping TypeName="AddressDatabbaseModel.tblThana">
+              <MappingFragment StoreEntitySet="tblThana">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblTourSpots">
+            <EntityTypeMapping TypeName="AddressDatabbaseModel.tblTourSpot">
+              <MappingFragment StoreEntitySet="tblTourSpot">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="DivisionId" ColumnName="DivisionId" />
+                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+                <ScalarProperty Name="ThanaId" ColumnName="ThanaId" />
+                <ScalarProperty Name="location" ColumnName="location" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblTourSpotImages">
+            <EntityTypeMapping TypeName="AddressDatabbaseModel.tblTourSpotImage">
+              <MappingFragment StoreEntitySet="tblTourSpotImage">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="PhotoCreditName" ColumnName="PhotoCreditName" />
+                <ScalarProperty Name="TourSpotId" ColumnName="TourSpotId" />
+                <ScalarProperty Name="UploadDate" ColumnName="UploadDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TravelHotels">
+            <EntityTypeMapping TypeName="AddressDatabbaseModel.TravelHotel">
+              <MappingFragment StoreEntitySet="TravelHotel">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="EstimatedPrice" ColumnName="EstimatedPrice" />
+                <ScalarProperty Name="TourSpotId" ColumnName="TourSpotId" />
+                <ScalarProperty Name="HotelWebsitesUrl" ColumnName="HotelWebsitesUrl" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PostedDate" ColumnName="PostedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
