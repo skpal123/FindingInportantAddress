@@ -17,5 +17,11 @@ namespace FindingAddress
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+        protected void Application_BeginRequest()
+        {
+            //Context.Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            //Response.Expires=-1;
+            //Response.Cache.SetNoStore();
+        }
     }
 }

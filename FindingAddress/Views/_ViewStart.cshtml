@@ -1,3 +1,11 @@
 ﻿@{
-    Layout = "~/Views/Shared/_AdminPanel.cshtml";
+    
+    if ((string)Session["UserName"] != null && (string)Session["RoleName"] == "Admin")
+    {
+        Layout = "~/Views/Shared/_AdminPanel.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
 }
