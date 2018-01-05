@@ -1,0 +1,265 @@
+﻿@model FindingAddress.Models.Doctor
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+     <div class="panel panel-success">
+        <div class="panel-heading" style="text-align: center">Save Doctor Information</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-offset-4">
+                    <div class="form-horizontal">
+                        <
+                        @Html.ValidationSummary(true)
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Name)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Gender, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.Gender, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Gender)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.HospitalId, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownListFor(model => model.HospitalId, ViewBag.HospitalDropdownList as IEnumerable<SelectListItem>, "SELECT", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.HospitalId)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DoctorTypeId, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownListFor(model => model.DoctorTypeId, ViewBag.DoctorTypeDopdownList as IEnumerable<SelectListItem>, "SELECT", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.DoctorTypeId)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DivisionId, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownListFor(model => model.DivisionId, ViewBag.DivisionList as IEnumerable<SelectListItem>, "SELECT", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.DivisionId)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CityId, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownListFor(model => model.CityId, ViewBag.cityList as IEnumerable<SelectListItem>, "SELECT", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.CityId)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DistrictId, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <select id="DistrictId" class="form-control" name="DistrictId">
+                                    <option selected="selected">SELECT</option>
+                                </select>
+                                @Html.ValidationMessageFor(model => model.DistrictId)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ThanaId, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <select id="ThanaId" class="form-control" name="ThanaId">
+                                    <option selected="selected">SELECT</option>
+                                </select>
+                                @Html.ValidationMessageFor(model => model.ThanaId)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.LocationId, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <select id="LocationId" class="form-control" name="LocationId">
+                                    <option selected="selected">SELECT</option>
+                                </select>
+                                @Html.ValidationMessageFor(model => model.LocationId)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.VisitAmountFirstTime, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.VisitAmountFirstTime, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.VisitAmountFirstTime)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.VisitAmountSecondTime, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.VisitAmountSecondTime, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.VisitAmountSecondTime)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PersonalEmailaddress, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.PersonalEmailaddress, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.PersonalEmailaddress)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PersonalWebsite, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.PersonalWebsite, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.PersonalWebsite)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PersonalChamber, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.PersonalChamber, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.PersonalChamber)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ContactNumber, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.ContactNumber, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.ContactNumber)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.SerialNumber, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.SerialNumber, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.SerialNumber)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.HealthCareTime, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.HealthCareTime, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.HealthCareTime)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Education, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.Education, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Education)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.Description, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Description)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Address, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.Address, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Address)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Create" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    }
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#DivisionId').change(function () {
+            $.ajax({
+                type: 'post',
+                url: '@Url.Action("getDistrictDropdownListByDivisionId")',
+                dataType: 'json',
+                data: { DivisionId: $("#DivisionId").val() },
+
+                success: function (data) {
+                    $("#DistrictId").empty();
+                    $("#DistrictId").append('<option value="' + 0 + '">' + "SELECT" + '</option>');
+                    $(data).each(function (index, item) {
+
+                        $("#DistrictId").append('<option value="' + item.Value + '">' + item.Text + '</option>');
+
+                    });
+                }
+            });
+        });
+        $('#DistrictId').change(function() {
+            $.ajax({
+                type: 'post',
+                url: '@Url.Action("getThanaDropdownListByDistrictId")',
+                dataType: 'json',
+                data: { DistrictId: $("#DistrictId").val() },
+
+                success: function(data) {
+                    $("#ThanaId").empty();
+                    $("#ThanaId").append('<option value="' + 0 + '">' + "SELECT" + '</option>');
+                    $(data).each(function(index, item) {
+
+                        $("#ThanaId").append('<option value="' + item.Value + '">' + item.Text + '</option>');
+
+                    });
+                }
+            });
+        });
+        $('#ThanaId').change(function() {
+            $.ajax({
+                type: 'post',
+                url: '@Url.Action("getLocationDropdownListByThanaId")',
+                dataType: 'json',
+                data: { ThanaId: $("#ThanaId").val() },
+
+                success: function(data) {
+                    $("#LocationId").empty();
+                    $("#LocationId").append('<option value="' + 0 + '">' + "SELECT" + '</option>');
+                    $(data).each(function(index, item) {
+
+                        $("#LocationId").append('<option value="' + item.Value + '">' + item.Text + '</option>');
+
+                    });
+                }
+            });
+
+        });
+
+    })
+        
+</script>
+</body>
+
+</html>

@@ -1,0 +1,202 @@
+﻿@model FindingAddress.Models.Lawyer
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Show Layer Dtails</title>
+</head>
+<body>
+    <div>
+    <hr />
+        <div class="container">
+            <div class="panel panel-default">
+                <div class="panel-heading">Details</div>
+                <div class="panel-body">
+                    <table class="table-hover">
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.Name)
+                            </td>
+                            <td>:</td>
+                            <td>
+                                @Html.DisplayFor(model => model.Name)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.Gender)
+                            </td>
+                            <td>:</td>
+                            <td>
+                                @Html.DisplayFor(model => model.Gender)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.imagePath)
+                            </td>
+                            <td>:</td>
+                            <td>
+                                @Html.DisplayFor(model => model.imagePath)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.CourtId)
+                            </td>
+                            <td>:</td>
+                            <td>
+                                @Html.DisplayFor(model => model.CourtId)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.LawyerTypeId)
+                            </td>
+                            <td>:</td>
+                            <td>
+                                @Html.DisplayFor(model => model.LawyerTypeId)
+                            </td>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.DivisionId)
+                            </td>
+                            <td>:</td>
+                            <td>
+                                @Html.DisplayFor(model => model.DivisionId)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.CityId)
+                            </td>
+                            <td>:</td>
+                            <td>
+                                @Html.DisplayFor(model => model.CityId)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.DistrictId)
+                            </td>
+                            <td>:</td>
+                            <td>
+                                @Html.DisplayFor(model => model.DistrictId)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.ThanaId)
+                            </td>
+                            <td>:</td>
+                            <td>
+                              @Html.DisplayFor(model => model.ThanaId)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.LocationId)
+                            </td>
+                            <td>:</td>
+                            <td>
+                                @Html.DisplayFor(model => model.LocationId)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                               @Html.DisplayNameFor(model => model.EstimatedFee)
+                            </td>
+                            <td>:</td>
+                            <td>
+                                @Html.DisplayFor(model => model.EstimatedFee)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.PersonalEmailaddress)
+                            </td>
+                            <td>:</td>
+                            <td>
+                                @Html.DisplayFor(model => model.PersonalEmailaddress)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.PersonalWebsite)
+                            </td>
+                            <td>:</td>
+                            <td>
+                                @Html.DisplayFor(model => model.PersonalWebsite)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.PersonalChamber)
+                            </td>
+                            <td>:</td>
+                            <td>
+                                @Html.DisplayFor(model => model.PersonalChamber)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.ContactNumber)
+                            </td>
+                            <td>:</td>
+                            <td>
+                                @Html.DisplayFor(model => model.ContactNumber)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.ChamberTime)
+                            </td>
+                            <td>:</td>
+                            <td>
+                                @Html.DisplayFor(model => model.ChamberTime)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.Address)
+                            </td>
+                            <td>:</td>
+                            <td>
+                                @Html.DisplayFor(model => model.Address)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.Education)
+                            </td>
+                            <td>:</td>
+                            <td>
+                                @Html.DisplayFor(model => model.Education)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.Description)
+                            </td>
+                            <td>:</td>
+                            <td>
+                                @Html.DisplayFor(model => model.Description)
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+    
+          
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

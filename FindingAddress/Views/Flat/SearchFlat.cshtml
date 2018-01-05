@@ -1,0 +1,209 @@
+﻿@model FindingAddress.Models.Flat
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SearchMess</title>
+</head>
+<body>
+    <div>
+        <table>
+            <tr>
+                <td>
+                    <label>City Name</label>
+                </td>
+
+                <td>
+                    <label>:</label>
+                </td>
+                <td>
+                    @Html.DropDownList("CityId", ViewBag.cityDropdownlist as IEnumerable<SelectListItem>, "SELECT", new { @class = "form-control" })
+                </td>
+            </tr>
+            <tr id="ThanaIdtr">
+                <td>
+                    <label>Thana Name</label>
+                </td>
+                <td>
+                    <label>:</label>
+                </td>
+                <td>
+                    <select id="ThanaId">
+                        <option value="0">SELECT</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="LocationIdtr">
+                <td>
+                    <label>Location Name</label>
+                </td>
+                <td>
+                    <label>:</label>
+                </td>
+                <td>
+                    <select id="LocationId">
+                        <option value="0">SELECT</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td>
+                    <label>Start Date</label>
+                </td>
+                <td>
+                    :
+                </td>
+                <td>
+                    <input type="text" id="startDate" class="form-control" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>End Date</label>
+                </td>
+                <td>
+                    :
+                </td>
+                <td>
+                    <input type="text" id="endDate" class="form-control" />
+                </td>
+            </tr>
+        </table>
+        <div id="dialog"></div>
+        <div class="panel panel-success" id="PanelDiv">
+            <div class="panel-heading">Mess List</div>
+            <div class="panel-body">
+                <table class="table-bordered" id="dataTable-1">
+                    <thead>
+                        <tr>
+                            <th>Building Name</th>
+                            <th>Manager Name</th>
+                            <th>Contact Number</th>
+                            <th>Available Sit</th>
+                            <th>Total Sit</th>
+                            '
+                            <th>Estimated Sit Fare</th>
+                            <th>Advance</th>
+                            <th>Description</th>
+                            <th>Posting Date</th>
+                            <th>Deadline Date</th>
+                        </tr>
+                    </thead>
+
+                </table>
+                <a href="#"></a>
+            </div>
+        </div>
+
+    </div>
+    <script src="~/Scripts/jquery-1.12.4.min.js"></script>
+    <link href="~/Content/demo_table_jui.css" rel="stylesheet" />
+    <link href="~/Content/jquery-ui.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.dataTables.min.js"></script>
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryui")
+        @Styles.Render("~/Content/cssjqryUi")
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var tableInstance;
+                $.ajax({
+                    type: 'post',
+                    url: '@Url.Action("showAllFlat")',
+                    dataType: 'json',
+                    success: function (data) {
+                        tableInstance = $("#dataTable-1").DataTable({
+                            data: data,
+                            columns:[
+                                { 'data': 'DivisionId' },
+                                { 'data': 'DistrictId' },
+                                { 'data': 'CityId' },
+                                { 'data': 'ThanaId' },
+                                { 'data': 'LocationId' },
+                                {
+                                    'data': 'PostedDate',
+                                    'render': function (date1) {
+                                        var date = new Date(parseInt(date1.substr(6)));
+                                        var month = date.getMonth() + 1;
+                                        return date.getDate() + "/" + month + "/" + date.getFullYear();
+                                    }
+                                },
+
+                                {
+                                    'data': 'DeadlineDate',
+                                    'render': function (date) {
+                                        var date = new Date(parseInt(date.substr(6)));
+                                        var month = date.getMonth() + 1;
+                                        return date.getDate() + "/" + month + "/" + date.getFullYear();
+                                    }
+                                },
+                                  { 'data': 'Address' },
+                            ]
+
+                        })
+                    }
+                });
+
+                $("#startDate").datepicker({
+                    appendText: 'dd/mm/yyyy',
+                    changeMonth: true,
+                    changeYear: true,
+                    buttonText: 'Date',
+                    dateFormat: 'dd/mm/yy',
+                    onSelect: function () {
+                        $("#MessList").empty();
+                        $("#PanelDiv").hide();
+                        var startDate = this.value;
+                        getAllmessByDate(startDate, ($("#endDate").val()));
+                    }
+                });
+                $("#endDate").datepicker({
+                    appendText: 'mm/dd/yyyy',
+                    changeMonth: true,
+                    changeYear: true,
+                    buttonText: 'Date',
+                    dateFormat: 'mm/dd/yy',
+                    onSelect: function () {
+                        $("#MessList").empty();
+                        $("#PanelDiv").hide();
+                        var enddate = this.value;
+                        getAllmessByDate($("#startDate").val(), enddate);
+                    }
+                });
+                $('#dataTable-1').on('click', 'tr', function () {
+
+                    var data = tableInstance.row(this).data();
+                    window.location = '@Url.Action("getMessDetails/", "Mess")' + data.Id;
+                });
+            })
+
+            @*function getAllmessByDate(startDate, endDate) {
+        $.ajax({
+            type: 'post',
+            url: '@Url.Action("getAllMessByStartAndEndDate")',
+            dataType: 'json',
+            data: { satrtDateTime: startDate, eDateTime: endDate },
+            success: function (data) {
+                $("#LocationId").empty();
+                $("#LocationId").append('<option value="' + 0 + '">' + "SELECT" + '</option>');
+                $(data).each(function (index, item) {
+                    $("#MessList").empty();
+                    $("#MessList").append('<tr><td>Building Name</td><td>Manager Name</td><td>Contact Number</td><td>Available Sit</td><td>Total Sit</td><td>Estimated Sit Fare</td><td>Advance</td><td>Description</td><td>PostingDate</td><td>AvailableMonth</td><td>DeadlineDate</td></tr>');
+                    $(data).each(function (index, item) {
+                        $("#MessList").append('<tr><td>' + item.BuildingName + '</td><td>' + item.ManagerName + '</td><td>' + item.ContactNumber + '</td><td>' + item.AvailableSit + '</td><td>' + item.TotalSit + '</td><td>' + item.EstimatedSitFare + '</td><td>'
+                            + item.Advance + '</td><td>' + item.Description + '</td><td>' + new Date(parseInt(item.PostingDate.substr(6))).toDateString() + '</td><td>' + item.AvailableMonth + '</td><td>' + new Date(parseInt(item.DeadlineDate.substr(6))).toDateString() + '</td></tr>');
+                    });
+                });
+                $("#PanelDiv").show();
+            }
+        });*@
+
+        </script>
+    }
+</body>
+</html>

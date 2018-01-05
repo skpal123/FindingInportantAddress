@@ -14,19 +14,19 @@ namespace FindingAddress.Controllers
         public ActionResult Index()
         {
             DropDownGateway dropDownGateway = new DropDownGateway();
-            ViewBag.DistrictDropdownList = dropDownGateway.getDistrictDopdownList();
+            ViewBag.DivisonDropdownList = dropDownGateway.getDivisionDopdownList();
             ViewBag.CityDropdownList = dropDownGateway.getCityDopdownList();
             return View();
         }
         [HttpPost]
-        public ActionResult Index(Flat flat, int LocationId)
+        public ActionResult Index(Flat flat,string DistrictId,string LocationId, string ThanaId,string imagePath)
         {
             
-            DropDownGateway dropDownGateway = new DropDownGateway();
-            ViewBag.DistrictDropdownList = dropDownGateway.getDistrictDopdownList();
-            ViewBag.CityDropdownList = dropDownGateway.getCityDopdownList();
             if (ModelState.IsValid)
             {
+                flat.DistrictId = DistrictId;
+                flat.ThanaId = ThanaId;
+                flat.LocationId = LocationId;
                 var flatGateway = new FlatGateway();
                 if (flatGateway.saveFlat(flat) > 0)
                 {
@@ -34,14 +34,37 @@ namespace FindingAddress.Controllers
                     return View("showAllFlat", flatList);
                 }
             }
+            DropDownGateway dropDownGateway = new DropDownGateway();
+            ViewBag.DivisonDropdownList = dropDownGateway.getDivisionDopdownList();
+            ViewBag.CityDropdownList = dropDownGateway.getCityDopdownList();
             return View();
         }
-        [HttpPost]
-        public ActionResult showAllFlat()
+        public JsonResult showAllFlat()
         {
             var flatGateway = new FlatGateway();
             var flatList = flatGateway.getAllFlat();
-            return View();
+            return Json(flatList,JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult EditFlat(int Id)
+        {
+            var flatGateway = new FlatGateway();
+            var flat = flatGateway.getAllFlatById(Id);
+            return View(flat);
+        }
+        public JsonResult getDistrictDropdownListByDivisionId(int DivisionId)
+        {
+            var DistrictList = new List<SelectListItem>();
+            if (DivisionId != 0)
+            {
+                DropDownGateway dropDownGateway = new DropDownGateway();
+                DistrictList = dropDownGateway.getDistrictDopdownListByDiisionId(DivisionId);
+            }
+            else
+            {
+                RedirectToAction("Index");
+            }
+            return Json(new SelectList(DistrictList, "Value", "Text"));
+
         }
         public JsonResult getThanaDropdownListByDistrictId(int DistrictId)
         {
@@ -70,6 +93,19 @@ namespace FindingAddress.Controllers
                 RedirectToAction("Index");
             }
             return Json(new SelectList(list, "Value", "Text"));
+        }
+        [HttpGet]
+        public ActionResult SearchFlat()
+        {
+            DropDownGateway dropDownGateway=new DropDownGateway();
+            ViewBag.cityDropdownlist = dropDownGateway.getCityDopdownList();
+            return View();
+        }
+        public JsonResult SearchAllFlat()
+        {
+            FlatGateway flatGateway=new FlatGateway();
+            var  flatList = flatGateway.getAllFlat();
+            return Json(flatList, JsonRequestBehavior.AllowGet);
         }
 	}
 }

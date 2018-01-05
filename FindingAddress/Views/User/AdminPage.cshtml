@@ -1,0 +1,10 @@
+﻿@if((string)Session["UserName"] ==null && (string)Session["RoleName"]==null)
+{
+    Response.Redirect(Url.Action("LogIn", "User"));
+}
+@{
+    ViewBag.Title = "AdminPage";
+}
+
+<h2>AdminPage</h2>
+

@@ -1,0 +1,52 @@
+﻿@model FindingAddress.Models.TourSpotImage
+
+@{
+    ViewBag.Title = "saveTourSoptImage";
+}
+
+<h2>saveTourSoptImage</h2>
+
+@using (Html.BeginForm("saveTourSoptImage","TourSpotImage",FormMethod.Post,new {enctype="multipart/form-data"})) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>TourSpotImage</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ImagePath, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="ImagePath" id="ImagePath"/>
+                @Html.ValidationMessageFor(model => model.ImagePath)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PhotoCreditName, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.PhotoCreditName)
+                @Html.ValidationMessageFor(model => model.PhotoCreditName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TourSpotId, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.TourSpotId, ViewBag.TourSpotList as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TourSpotId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

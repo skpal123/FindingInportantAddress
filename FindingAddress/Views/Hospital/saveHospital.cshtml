@@ -1,0 +1,167 @@
+﻿@model FindingAddress.Models.Hospital
+
+@{
+    ViewBag.Title = "saveHospital";
+}
+
+<h2>saveHospital</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Hospital</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.HospitalTypeId, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.HospitalTypeId, ViewBag.HospitalTypeDropdownList as IEnumerable<SelectListItem>, "SELECT", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.HospitalTypeId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DivisionId, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.DivisionId, ViewBag.DivisionList as IEnumerable<SelectListItem>, "SELECT", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DivisionId)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.DistrictId, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select id="DistrictId" class="form-control" name="DistrictId">
+                    <option selected="selected">SELECT</option>
+                </select>
+                @Html.ValidationMessageFor(model => model.DistrictId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CityId, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.CityId, ViewBag.cityList as IEnumerable<SelectListItem>, "SELECT", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CityId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ThanaId, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select id="ThanaId" class="form-control" name="ThanaId">
+                    <option selected="selected">SELECT</option>
+                </select>
+                @Html.ValidationMessageFor(model => model.ThanaId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LocationId, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select id="LocationId" class="form-control" name="LocationId">
+                    <option selected="selected">SELECT</option>
+                </select>
+                @Html.ValidationMessageFor(model => model.LocationId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description)
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Address, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Address)
+                @Html.ValidationMessageFor(model => model.Address)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script type="text/javascript">
+        $(document).ready(function () {
+            $('#DivisionId').change(function () {
+                $.ajax({
+                    type: 'post',
+                    url: '@Url.Action("getDistrictDropdownListByDivisionId")',
+                    dataType: 'json',
+                    data: { DivisionId: $("#DivisionId").val() },
+
+                    success: function (data) {
+                        $("#DistrictId").empty();
+                        $("#DistrictId").append('<option value="' + 0 + '">' + "SELECT" + '</option>');
+                        $(data).each(function (index, item) {
+
+                            $("#DistrictId").append('<option value="' + item.Value + '">' + item.Text + '</option>');
+
+                        });
+                    }
+                });
+            });
+        $('#DistrictId').change(function() {
+            $.ajax({
+                type: 'post',
+                url: '@Url.Action("getThanaDropdownListByDistrictId")',
+                dataType: 'json',
+                data: { DistrictId: $("#DistrictId").val() },
+
+                success: function(data) {
+                    $("#ThanaId").empty();
+                    $("#ThanaId").append('<option value="' + 0 + '">' + "SELECT" + '</option>');
+                    $(data).each(function(index, item) {
+
+                        $("#ThanaId").append('<option value="' + item.Value + '">' + item.Text + '</option>');
+
+                    });
+                }
+            });
+        });
+        $('#ThanaId').change(function() {
+            $.ajax({
+                type: 'post',
+                url: '@Url.Action("getLocationDropdownListByThanaId")',
+                dataType: 'json',
+                data: { ThanaId: $("#ThanaId").val() },
+
+                success: function(data) {
+                    $("#LocationId").empty();
+                    $("#LocationId").append('<option value="' + 0 + '">' + "SELECT" + '</option>');
+                    $(data).each(function(index, item) {
+
+                        $("#LocationId").append('<option value="' + item.Value + '">' + item.Text + '</option>');
+
+                    });
+                }
+            });
+
+        });
+
+    })
+</script>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

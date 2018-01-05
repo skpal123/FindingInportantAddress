@@ -1,0 +1,194 @@
+﻿@model FindingAddress.Models.TravelHotel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>saveTravelHotel</title>
+</head>
+<body>
+    @using (Html.BeginForm()) 
+    {
+        @Html.AntiForgeryToken()
+        
+        <div class="form-horizontal">
+            <h4>TravelHotel</h4>
+            <hr />
+            @Html.ValidationSummary(true)
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Name)
+                    @Html.ValidationMessageFor(model => model.Name)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Description)
+                    @Html.ValidationMessageFor(model => model.Description)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.EstimatedPrice, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.EstimatedPrice)
+                    @Html.ValidationMessageFor(model => model.EstimatedPrice)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.TourSpotId, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.TourSpotId, ViewBag.TourSpotDropdownList as IEnumerable<SelectListItem>, "SELECT", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.TourSpotId)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.HotelWebsitesUrl, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.HotelWebsitesUrl)
+                    @Html.ValidationMessageFor(model => model.HotelWebsitesUrl)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.DivisionId, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.DivisionId, ViewBag.DivisonDropdownList as IEnumerable<SelectListItem>, "SELECT", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.DivisionId)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.DistrictId, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <select id="DistrictId" class="form-control" name="DistrictId">
+                        <option value="0">SELECT</option>
+                    </select>
+                    @Html.ValidationMessageFor(model => model.DistrictId)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.ThanaId, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <select id="ThanaId" class="form-control" name="ThanaId">
+                        <option value="0">SELECT</option>
+                    </select>
+                    @Html.ValidationMessageFor(model => model.ThanaId)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.locationId, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <select id="LocationId" class="form-control" name="LocationId">
+                        <option value="0">SELECT</option>
+                    </select>
+                    @Html.ValidationMessageFor(model => model.locationId)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Email)
+                    @Html.ValidationMessageFor(model => model.Email)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.PostedDate, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.PostedDate)
+                    @Html.ValidationMessageFor(model => model.PostedDate)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.Address, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Address)
+                    @Html.ValidationMessageFor(model => model.Address)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+    
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#DivisionId').change(function () {
+                $.ajax({
+                    type: 'post',
+                    url: '@Url.Action("getDistrictDropdownListByDivisionId")',
+                    dataType: 'json',
+                    data: { DivisionId: $("#DivisionId").val() },
+
+                    success: function (data) {
+                        $("#DistrictId").empty();
+                        $("#DistrictId").append('<option value="' + 0 + '">' + "SELECT" + '</option>');
+                        $(data).each(function (index, item) {
+
+                            $("#DistrictId").append('<option value="' + item.Value + '">' + item.Text + '</option>');
+
+                        });
+                    }
+                });
+            });
+        $('#DistrictId').change(function() {
+            $.ajax({
+                type: 'post',
+                url: '@Url.Action("getThanaDropdownListByDistrictId")',
+                dataType: 'json',
+                data: { DistrictId: $("#DistrictId").val() },
+
+                success: function(data) {
+                    $("#ThanaId").empty();
+                    $("#ThanaId").append('<option value="' + 0 + '">' + "SELECT" + '</option>');
+                    $(data).each(function(index, item) {
+
+                        $("#ThanaId").append('<option value="' + item.Value + '">' + item.Text + '</option>');
+
+                    });
+                }
+            });
+        });
+        $('#ThanaId').change(function() {
+            $.ajax({
+                type: 'post',
+                url: '@Url.Action("getLocationDropdownListByThanaId")',
+                dataType: 'json',
+                data: { ThanaId: $("#ThanaId").val() },
+
+                success: function(data) {
+                    $("#LocationId").empty();
+                    $("#LocationId").append('<option value="' + 0 + '">' + "SELECT" + '</option>');
+                    $(data).each(function(index, item) {
+
+                        $("#LocationId").append('<option value="' + item.Value + '">' + item.Text + '</option>');
+
+                    });
+                }
+            });
+
+        });
+    })
+    </script>
+</body>
+</html>

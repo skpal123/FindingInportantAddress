@@ -167,8 +167,7 @@ namespace FindingAddress.DataAccessLayer
             List<SelectListItem> selectListitemList = new List<SelectListItem>();
             using (SqlConnection con = new SqlConnection(cs))
             {
-                SqlCommand cmd = new SqlCommand("", con);
-                cmd.CommandType = CommandType.StoredProcedure;
+                SqlCommand cmd = new SqlCommand("select * from tblHospitalType", con);
                 con.Open();
                 SqlDataReader rdr = cmd.ExecuteReader();
                 while (rdr.Read())
@@ -188,8 +187,7 @@ namespace FindingAddress.DataAccessLayer
             List<SelectListItem> selectListitemList = new List<SelectListItem>();
             using (SqlConnection con = new SqlConnection(cs))
             {
-                SqlCommand cmd = new SqlCommand("", con);
-                cmd.CommandType = CommandType.StoredProcedure;
+                SqlCommand cmd = new SqlCommand("select * from tblDoctorType", con);
                 con.Open();
                 SqlDataReader rdr = cmd.ExecuteReader();
                 while (rdr.Read())
@@ -209,8 +207,7 @@ namespace FindingAddress.DataAccessLayer
             List<SelectListItem> selectListitemList = new List<SelectListItem>();
             using (SqlConnection con = new SqlConnection(cs))
             {
-                SqlCommand cmd = new SqlCommand("", con);
-                cmd.CommandType = CommandType.StoredProcedure;
+                SqlCommand cmd = new SqlCommand("select * from tblLawerType", con);
                 con.Open();
                 SqlDataReader rdr = cmd.ExecuteReader();
                 while (rdr.Read())
@@ -252,6 +249,127 @@ namespace FindingAddress.DataAccessLayer
             using (SqlConnection con = new SqlConnection(cs))
             {
                 SqlCommand cmd = new SqlCommand("select * from tblBusStaion", con);
+                con.Open();
+                SqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    SelectListItem selectList = new SelectListItem
+                    {
+                        Value = rdr["Id"].ToString(),
+                        Text = rdr["Name"].ToString()
+                    };
+                    selectListitemList.Add(selectList);
+                }
+            }
+            return selectListitemList;
+        }
+        public List<SelectListItem> gertCategoryDropdownList()
+        {
+            List<SelectListItem> selectListitemList = new List<SelectListItem>();
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                SqlCommand cmd = new SqlCommand("select * from tblCategory", con);
+                con.Open();
+                SqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    SelectListItem selectList = new SelectListItem
+                    {
+                        Value = rdr["Id"].ToString(),
+                        Text = rdr["Name"].ToString()
+                    };
+                    selectListitemList.Add(selectList);
+                }
+            }
+            return selectListitemList;
+        }
+        public List<SelectListItem> gertServicesList()
+        {
+            List<SelectListItem> selectListitemList = new List<SelectListItem>();
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                SqlCommand cmd = new SqlCommand("select * from tblHospitalService", con);
+                con.Open();
+                SqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    SelectListItem selectList = new SelectListItem
+                    {
+                        Value = rdr["Id"].ToString(),
+                        Text = rdr["Name"].ToString()
+                    };
+                    selectListitemList.Add(selectList);
+                }
+            }
+            return selectListitemList;
+        }
+        public List<SelectListItem> getHospitalListByThanaId(int Id)
+        {
+            List<SelectListItem> selectListitemList = new List<SelectListItem>();
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                SqlCommand cmd = new SqlCommand("select * from tblHospital where ThanaId=@ThanaId", con);
+                cmd.Parameters.AddWithValue("@ThanaId", Id);
+                con.Open();
+                SqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    SelectListItem selectList = new SelectListItem
+                    {
+                        Value = rdr["Id"].ToString(),
+                        Text = rdr["Name"].ToString()
+                    };
+                    selectListitemList.Add(selectList);
+                }
+            }
+            return selectListitemList;
+        }
+        public List<SelectListItem> getHospitalList()
+        {
+            List<SelectListItem> selectListitemList = new List<SelectListItem>();
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                SqlCommand cmd = new SqlCommand("select * from tblHospital", con);
+                con.Open();
+                SqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    SelectListItem selectList = new SelectListItem
+                    {
+                        Value = rdr["Id"].ToString(),
+                        Text = rdr["Name"].ToString()
+                    };
+                    selectListitemList.Add(selectList);
+                }
+            }
+            return selectListitemList;
+        }
+        public List<SelectListItem> GetCourtsList()
+        {
+            List<SelectListItem> selectListitemList = new List<SelectListItem>();
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                SqlCommand cmd = new SqlCommand("select * from tblLCourt", con);
+                con.Open();
+                SqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    SelectListItem selectList = new SelectListItem
+                    {
+                        Value = rdr["Id"].ToString(),
+                        Text = rdr["Name"].ToString()
+                    };
+                    selectListitemList.Add(selectList);
+                }
+            }
+            return selectListitemList;
+        }
+        public List<SelectListItem> GeTourSpotDropDownList()
+        {
+            List<SelectListItem> selectListitemList = new List<SelectListItem>();
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                SqlCommand cmd = new SqlCommand("select * from tblTourSpot", con);
                 con.Open();
                 SqlDataReader rdr = cmd.ExecuteReader();
                 while (rdr.Read())

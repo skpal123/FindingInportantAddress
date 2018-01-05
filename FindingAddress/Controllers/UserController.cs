@@ -41,13 +41,23 @@ namespace FindingAddress.Controllers
             {
                 
                 int count = userGateway.verifyUserAccount((string)Session["Username"], (string)Session["Password"]);
-                if (count > 0)
+                if (count > 0 && (string)Session["RoleName"] == "Admin")
                 {
                    return RedirectToAction("AdminPage","User");
                 }
+                else if (count > 0 && (string)Session["RoleName"] == "GeneralUser")
+                {
+                    return RedirectToAction(("GeneralPage"), "User");
+                }
+                else if (count > 0 && (string)Session["RoleName"] == "RegisteredUser")
+                {
+                    return RedirectToAction(("RegisteredPage"), "User");
+                }
                 else
                 {
-                    ViewBag.result = "not log in";
+                    {
+                        ViewBag.result = "Your User Name and Passwoed is not correct";
+                    }
                 }
             }
             else
@@ -68,6 +78,29 @@ namespace FindingAddress.Controllers
                 return RedirectToAction("LogIn", "User");
             }
         }
+        public ActionResult GeneralPage()
+        {
+            if ((string)Session["Username"] != null && (string)Session["Username"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("LogIn", "User");
+            }
+        }
+        public ActionResult RegisteredPage()
+        {
+            if ((string)Session["Username"] != null && (string)Session["Username"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("LogIn", "User");
+            }
+        }
+
         
         [HttpGet]
         [OutputCache(NoStore=true,Duration=0,VaryByParam="*")]
@@ -75,7 +108,12 @@ namespace FindingAddress.Controllers
         {
             Session.Clear();
             Session.Abandon();
-            return View("LogIn");
+            return RedirectToAction("LogIn", "User");
+        }
+
+        public ActionResult RegistrationForm()
+        {
+            return View();
         }
 	}
 }

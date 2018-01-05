@@ -1,0 +1,255 @@
+﻿@model FindingAddress.Models.Lawyer
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>saveLawyer</title>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="panel panel-default">
+            <div class="panel-heading">Lawyer Information</div>
+            <div class="panel-body">
+                <div class="form-horizontal">
+                    <h4 style="text-align: center; ">Enter Lawyer details</h4>
+                    <hr />
+                    @Html.ValidationSummary(true)
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Name)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Gender, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.Gender, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Gender)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.imagePath, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <input type="file" name="imagePath" />
+                            @Html.ValidationMessageFor(model => model.imagePath)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CourtId, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.CourtId, ViewBag.CourstList as IEnumerable<SelectListItem>, "SELECT", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.CourtId)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.LawyerTypeId, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.LawyerTypeId, ViewBag.LawyerTypeList as IEnumerable<SelectListItem>, "SELECT", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.LawyerTypeId)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DivisionId, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.DivisionId, ViewBag.DivisionDropdownList as IEnumerable<SelectListItem>, "SELECT", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.DivisionId)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CityId, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.CityId, ViewBag.CityDropDownList as IEnumerable<SelectListItem>, "SELECT", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.CityId)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DistrictId, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <select id="DistrictId" class="form-control" name="DistrictId">
+                                <option selected="selected">SELECT</option>
+                            </select>
+                            @Html.ValidationMessageFor(model => model.DistrictId)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ThanaId, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <select id="ThanaId" class="form-control" name="ThanaId">
+                                <option selected="selected">SELECT</option>
+                            </select>
+                            @Html.ValidationMessageFor(model => model.ThanaId)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.LocationId, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <select id="LocationId" class="form-control" name="LocationId">
+                                <option selected="selected">SELECT</option>
+                            </select>
+                            @Html.ValidationMessageFor(model => model.LocationId)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.EstimatedFee, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.EstimatedFee, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.EstimatedFee)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PersonalEmailaddress, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.PersonalEmailaddress, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.PersonalEmailaddress)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PersonalWebsite, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.PersonalWebsite, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.PersonalWebsite)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PersonalChamber, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.PersonalChamber, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.PersonalChamber)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ContactNumber, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.ContactNumber, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ContactNumber)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ChamberTime, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.ChamberTime, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ChamberTime)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Education, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextAreaFor(model => model.Education, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Education)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Description)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Address, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.Address, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Address)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    }
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#DivisionId').change(function () {
+                $.ajax({
+                    type: 'post',
+                    url: '@Url.Action("getDistrictDropdownListByDivisionId")',
+                    dataType: 'json',
+                    data: { DivisionId: $("#DivisionId").val() },
+
+                    success: function (data) {
+                        $("#DistrictId").empty();
+                        $("#DistrictId").append('<option value="' + 0 + '">' + "SELECT" + '</option>');
+                        $(data).each(function (index, item) {
+
+                            $("#DistrictId").append('<option value="' + item.Value + '">' + item.Text + '</option>');
+
+                        });
+                    }
+                });
+            });
+            $('#DistrictId').change(function () {
+                $.ajax({
+                    type: 'post',
+                    url: '@Url.Action("getThanaDropdownListByDistrictId")',
+                    dataType: 'json',
+                    data: { DistrictId: $("#DistrictId").val() },
+
+                    success: function (data) {
+                        $("#ThanaId").empty();
+                        $("#ThanaId").append('<option value="' + 0 + '">' + "SELECT" + '</option>');
+                        $(data).each(function (index, item) {
+
+                            $("#ThanaId").append('<option value="' + item.Value + '">' + item.Text + '</option>');
+
+                        });
+                    }
+                });
+            });
+            $('#ThanaId').change(function () {
+                $.ajax({
+                    type: 'post',
+                    url: '@Url.Action("getLocationDropdownListByThanaId")',
+                    dataType: 'json',
+                    data: { ThanaId: $("#ThanaId").val() },
+
+                    success: function (data) {
+                        $("#LocationId").empty();
+                        $("#LocationId").append('<option value="' + 0 + '">' + "SELECT" + '</option>');
+                        $(data).each(function (index, item) {
+
+                            $("#LocationId").append('<option value="' + item.Value + '">' + item.Text + '</option>');
+
+                        });
+                    }
+                });
+
+            });
+
+        })
+    </script>
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</body>
+</html>

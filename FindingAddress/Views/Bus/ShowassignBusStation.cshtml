@@ -1,10 +1,5 @@
 ﻿@model IEnumerable<FindingAddress.Models.BusAssignStation>
 
-@{
-    ViewBag.Title = "ShowassignBusStation";
-    Layout = "~/Views/Shared/_AdminPanel.cshtml";
-}
-
 <h2>ShowassignBusStation</h2>
 
 <p>
@@ -16,9 +11,14 @@
             @Html.DisplayNameFor(model => model.BusId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.StationId)
+            @Html.DisplayNameFor(model => model.SourceId)
         </th>
-        <th></th>
+        <th>
+            @Html.DisplayNameFor(model=>model.DestinationId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fare)
+        </th>
     </tr>
 
 @foreach (var item in Model) {
@@ -27,7 +27,13 @@
             @Html.DisplayFor(modelItem => item.BusId)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.StationId)
+            @Html.DisplayFor(modelItem => item.SourceId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DestinationId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fare)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

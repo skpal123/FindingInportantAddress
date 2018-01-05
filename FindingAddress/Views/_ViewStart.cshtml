@@ -4,6 +4,14 @@
     {
         Layout = "~/Views/Shared/_AdminPanel.cshtml";
     }
+    else if ((string)Session["UserName"] != null && (string)Session["RoleName"] == "GeneralUser")
+    {
+        Layout = "~/Views/Shared/_GeneralUserPanel.cshtml";
+    }
+    else if ((string)Session["UserName"] != null && (string)Session["RoleName"] == "RegisteredUser")
+    {
+        Layout = "~/Views/Shared/_RegisteredPanel.cshtml";
+    }
     else
     {
         Layout = "~/Views/Shared/_Layout.cshtml";

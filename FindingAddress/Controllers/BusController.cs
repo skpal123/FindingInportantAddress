@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using FindingAddress.Models;
 using FindingAddress.DataAccessLayer;
 namespace FindingAddress.Controllers
@@ -63,7 +64,7 @@ namespace FindingAddress.Controllers
                 ViewBag.result = "Updataing faild";
                 return View();
             }
-           
+
         }
         [HttpGet]
         public ActionResult saveBusStatiopn()
@@ -88,10 +89,10 @@ namespace FindingAddress.Controllers
         {
             return View();
         }
-        public ActionResult EditBusStation( int Id)
+        public ActionResult EditBusStation(int Id)
         {
             var busStationGateway = new BusStationGateway();
-            var busStation=busStationGateway.getBusstationById(Id);
+            var busStation = busStationGateway.getBusstationById(Id);
             return View(busStation);
         }
         [HttpGet]
@@ -99,7 +100,7 @@ namespace FindingAddress.Controllers
         {
             var dropdownGateway = new DropDownGateway();
             ViewBag.buscompanyDropdownList = dropdownGateway.getBusCompanyDopdownList();
-            ViewBag.busStationDropdownList = dropdownGateway.gertBusStationDropdownList();      
+            ViewBag.busStationDropdownList = dropdownGateway.gertBusStationDropdownList();
             return View();
         }
         [HttpPost]
@@ -110,8 +111,8 @@ namespace FindingAddress.Controllers
             ViewBag.busStationDropdownList = dropdownGateway.gertBusStationDropdownList();
             if (ModelState.IsValid)
             {
-                 var busStationGateway = new BusStationGateway();
-                if(busStationGateway.saveBusAssignStation(busAssignStation)>0)
+                var busStationGateway = new BusStationGateway();
+                if (busStationGateway.saveBusAssignStation(busAssignStation) > 0)
                 {
                     var busAssignStationLst = busStationGateway.getBusAssignStation();
                     return View("ShowassignBusStation", busAssignStationLst);
@@ -121,19 +122,46 @@ namespace FindingAddress.Controllers
                     ViewBag.result = "Failed";
                     return View();
                 }
-               
+
             }
             else
             {
                 return View();
             }
-            
+
         }
         public ActionResult ShowassignBusStation()
         {
-            var busStationGateway=new BusStationGateway();
+            var busStationGateway = new BusStationGateway();
             var busAssignStationLst = busStationGateway.getBusAssignStation();
             return View(busAssignStationLst);
         }
-	}
+        [HttpGet]
+        public ActionResult GetBusByBusStation()
+        {
+            var busStationGateway = new BusStationGateway();
+            var busAssignStationLst = busStationGateway.getBusAssignStation();
+            return View();
+        }
+        [HttpPost]
+        public ActionResult GetBusByBusStation(BusAssignStation busAssignStation)
+        {
+            var busStationGateway = new BusStationGateway();
+            var busAssignStationLst = busStationGateway.getAllBusCompanyBySourceAndDestination(busAssignStation);
+            ViewBag.List = busAssignStationLst;
+            return View();
+        }
+        public JsonResult getStationList(string term)
+        {
+            var busStationGateway = new BusStationGateway();
+            var stationList = busStationGateway.getBusstationNameByName(term);
+            return Json(stationList, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult searchBusCompanyBySourceAndDestination(BusAssignStation busAssignStation)
+        {
+            var busStationGateway = new BusStationGateway();
+            var stationList = busStationGateway.getAllBusCompanyBySourceAndDestination(busAssignStation);
+            return Json(stationList, JsonRequestBehavior.AllowGet);
+        }
+    }
 }

@@ -1,0 +1,17 @@
+﻿@if ((string)Session["UserName"] == null && (string)Session["RoleName"] == null)
+{
+    Response.Redirect(Url.Action("LogIn", "User"));
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GeneralPage</title>
+</head>
+<body>
+    <div>
+        <h3>General Page</h3> 
+    </div>
+</body>
+</html>
